@@ -685,32 +685,105 @@ async function sendChat() {
   const text = input.value.trim();
   if (!text) return;
 
-  // Add user message
   messages.innerHTML += '<div class="msg user">' + escHtml(text) + '</div>';
   input.value = '';
   messages.scrollTop = messages.scrollHeight;
 
-  // Typing indicator
   const typingId = 'typing-' + Date.now();
   messages.innerHTML += '<div class="msg typing" id="' + typingId + '">✦ thinking...</div>';
   messages.scrollTop = messages.scrollHeight;
 
+  // Try Netlify function first (works when deployed on Netlify)
   try {
     const res = await fetch(SITE_CONFIG.chatEndpoint, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({message: text})
     });
-    const data = await res.json();
-    document.getElementById(typingId).remove();
-    messages.innerHTML += '<div class="msg bot">' + escHtml(data.reply || 'The Empire is momentarily unavailable. Please WhatsApp us directly.') + '</div>';
+    if (res.ok) {
+      const data = await res.json();
+      if (data.reply) {
+        document.getElementById(typingId).remove();
+        messages.innerHTML += '<div class="msg bot">' + escHtml(data.reply) + '</div>';
+        messages.scrollTop = messages.scrollHeight;
+        return;
+      }
+    }
   } catch(e) {
-    document.getElementById(typingId).remove();
-    messages.innerHTML += '<div class="msg bot">The Empire is momentarily unavailable. Please <a href="https://wa.me/' + SITE_CONFIG.whatsapp1 + '" style="color:var(--gold)">WhatsApp us</a> directly.</div>';
+    // Netlify function not available — use local fallback below
   }
+
+  // Local intelligent FAQ fallback
+  document.getElementById(typingId).remove();
+  const reply = getLocalReply(text);
+  messages.innerHTML += '<div class="msg bot">' + reply + '</div>';
   messages.scrollTop = messages.scrollHeight;
 }
 
+function getLocalReply(msg) {
+  const q = msg.toLowerCase();
+  const WA = 'https://wa.me/' + SITE_CONFIG.whatsapp1;
+  const TG = 'https://t.me/' + SITE_CONFIG.telegram;
+
+  if (/\b(hi|hello|hey|good|greet|welcome|start)\b/.test(q)) {
+    return 'Welcome to the House of Keysha Empire. I am here to assist you with enquiries about our services, sessions, pricing, and bookings. How may I serve you?';
+  }
+  if (/\b(keysha|mistress|domina|dominatrix)\b/.test(q)) {
+    return 'Mistress Keysha is Dubai\'s most exclusive Dominatrix — the Ruler of the Empire. She offers psychological domination, bondage, sissy training, financial domination, foot worship, and online sessions. All new clients begin with an intake consultation. Shall I direct you to booking?';
+  }
+  if (/\b(becky)\b/.test(q)) {
+    return 'Becky is the Empire\'s Switch — she plays both dominant and submissive roles. She offers switch sessions from 700 AED/hr, role play from 800 AED/hr, and soft domination from 600 AED/hr. Book via cal.com/houseofkeyshaempiredxb/becky or <a href="' + WA + '" style="color:var(--gold)">WhatsApp</a>.';
+  }
+  if (/\b(mae|sensory|tantric|wax|temperature)\b/.test(q)) {
+    return 'Mae is our Sensory Specialist. She works with sensory deprivation (900 AED/hr), wax and temperature play (750 AED/hr), and tantric discipline (1,000 AED/hr). Deeply personalised sessions. Book at cal.com/houseofkeyshaempiredxb/mae.';
+  }
+  if (/\b(pepper|strict|discipline|impact|cane|paddle)\b/.test(q)) {
+    return 'Pepper is the Empire\'s strictest disciplinarian — no leniency, no negotiation. Strict discipline sessions from 900 AED/hr, impact play from 800 AED/hr, accountability training from 500 AED/week. Book at cal.com/houseofkeyshaempiredxb/pepper.';
+  }
+  if (/\b(ron|master|male|men|couple|lifestyle)\b/.test(q)) {
+    return 'Master Ron brings masculine authority to the Empire. Male domination sessions from 900 AED/hr, couples mentorship from 1,200 AED/session, lifestyle coaching from 600 AED/session. Book at cal.com/houseofkeyshaempiredxb/master-ron.';
+  }
+  if (/\b(sissy|sissification|feminisation|feminization|training programme|phase)\b/.test(q)) {
+    return 'The Sissy Training Programme is a 6-phase transformation under Mistress Keysha\'s complete authority: Discovery & Surrender → Appearance & Presentation → Service & Obedience → Psychological Rewiring → Advanced Training → Graduation & Permanent Assignment. Sessions from 1,200 AED. Apply at cal.com/houseofkeyshaempiredxb/sissy-intake.';
+  }
+  if (/\b(price|cost|rate|fee|aed|how much|afford|budget|package|tribute|devotee|ownership|property)\b/.test(q)) {
+    return 'Our pricing:<br>• Tribute (single session): 800 AED<br>• The Devotee (4 sessions/month + WhatsApp access): 3,500 AED/month<br>• Empire Property (unlimited + 24/7 access + full programme): 8,000 AED/month<br><br>Individual services start from 400 AED (online) to 1,200 AED/session. All sessions between consenting adults. Discreet billing guaranteed.';
+  }
+  if (/\b(book|booking|appointment|calendar|schedule|reserve|cal\.com|intake|consult)\b/.test(q)) {
+    return 'New clients begin with a 20-minute intake consultation at <a href="' + SITE_CONFIG.calBase + '/intake" style="color:var(--gold)" target="_blank">cal.com/houseofkeyshaempiredxb/intake</a>. Returning clients may book directly. You may also <a href="' + WA + '" style="color:var(--gold)" target="_blank">WhatsApp +971 567 620 449</a> to discuss your requirements first.';
+  }
+  if (/\b(whatsapp|wa|phone|call|number|contact|reach|message|text)\b/.test(q)) {
+    return 'You may reach the Empire via:<br>• <a href="' + WA + '" style="color:var(--gold)" target="_blank">WhatsApp +971 567 620 449</a><br>• <a href="https://wa.me/' + SITE_CONFIG.whatsapp2 + '" style="color:var(--gold)" target="_blank">WhatsApp +971 567 299 030</a><br>• <a href="' + TG + '" style="color:var(--gold)" target="_blank">Telegram @' + SITE_CONFIG.telegram + '</a>';
+  }
+  if (/\b(telegram|tg|@)/.test(q)) {
+    return 'The Empire is available on Telegram: <a href="' + TG + '" style="color:var(--gold)" target="_blank">@' + SITE_CONFIG.telegram + '</a>. You may message us there for enquiries, screening, or to arrange your first session.';
+  }
+  if (/\b(online|remote|virtual|video|cam|skype|zoom|anywhere)\b/.test(q)) {
+    return 'Online and remote sessions are available for clients worldwide. Mistress Keysha conducts remote sessions via WhatsApp, Telegram, and video call from 400 AED/hr. The Empire\'s authority is not limited by geography.';
+  }
+  if (/\b(bdsm|bondage|rope|restraint|chain|leather|tie|bound)\b/.test(q)) {
+    return 'Mistress Keysha\'s bondage and restraint sessions take place in a fully equipped private dungeon. Rope, leather, and steel — total immobilisation. Sessions from 1,000 AED/hr. Approved clients only. Begin with an <a href="' + SITE_CONFIG.calBase + '/intake" style="color:var(--gold)" target="_blank">intake consultation</a>.';
+  }
+  if (/\b(financial|findom|wallet|tribute|cash|money|gift|amazon)\b/.test(q)) {
+    return 'Mistress Keysha\'s Financial Domination is for serious tributers only. Remote or in-person financial control — your wallet is a leash. Pricing by arrangement. Contact via <a href="' + WA + '" style="color:var(--gold)" target="_blank">WhatsApp</a> to discuss.';
+  }
+  if (/\b(foot|feet|worship|sole|toe|heel)\b/.test(q)) {
+    return 'Foot worship is a privilege — not everyone is offered it. Mistress Keysha\'s foot worship sessions start from 600 AED/session. You must earn the right to kneel at her feet. Begin with an <a href="' + SITE_CONFIG.calBase + '/intake" style="color:var(--gold)" target="_blank">intake consultation</a>.';
+  }
+  if (/\b(safe|discreet|private|confidential|billing|cod|secret|anonymous)\b/.test(q)) {
+    return 'The Empire guarantees complete discretion. All billing is coded — transactions will not reveal the nature of services. Your privacy is absolute. What happens in the House stays in the House.';
+  }
+  if (/\b(new|first|beginner|experience|never|trial|curious|explore)\b/.test(q)) {
+    return 'New clients are always welcome, provided they are serious. The process: 1) Complete the <a href="' + SITE_CONFIG.calBase + '/intake" style="color:var(--gold)" target="_blank">intake consultation</a> (20 min, free), 2) Receive approval, 3) Book your first session. No time-wasters. Those who are ready will find no equal in Dubai.';
+  }
+  if (/\b(dubai|uae|location|where|address|city|visit|incall|outcall)\b/.test(q)) {
+    return 'The Empire is based in Dubai, UAE. In-person sessions take place in a private, fully-equipped dungeon. Location is provided upon booking confirmation only. Online sessions are available worldwide.';
+  }
+  if (/(\?|help|anything|everything|what|service|offer|do)/.test(q)) {
+    return 'The House of Keysha Empire offers:<br>• Psychological Domination<br>• Bondage & Restraint<br>• Foot Worship<br>• Financial Domination<br>• Sissy Training (6-phase programme)<br>• Online/Remote Sessions<br>• Switch sessions with Becky<br>• Sensory experiences with Mae<br>• Strict discipline with Pepper<br>• Male domination with Master Ron<br><br>Shall I tell you more about any specific service?';
+  }
+  return 'The Empire receives your message. For complex enquiries, please <a href="' + WA + '" style="color:var(--gold)" target="_blank">WhatsApp us</a> or <a href="' + TG + '" style="color:var(--gold)" target="_blank">Telegram @' + SITE_CONFIG.telegram + '</a> and we will respond shortly. You may also <a href="' + SITE_CONFIG.calBase + '/intake" style="color:var(--gold)" target="_blank">book a consultation</a> to speak directly.';
+}
 function escHtml(str) {
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
