@@ -166,63 +166,114 @@ const conversations = {};
 // ── MAIN HANDLER ────────────────────────────────────────────────────
 
 exports.handler = async (event) => {
-    if (event.httpMethod !== 'POST') {
-          return { statusCode: 200, body: 'House of Keysha Empire — Telegram Bot Active' };
-    }
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
 
-    const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  // ── GET: Webhook setup & health check ──────────────────────────────
+  if (event.httpMethod === 'GET') {
     if (!botToken) {
-          return { statusCode: 500, body: 'Bot token not configured' };
+      return { statusCode: 200, body: 'Bot token not configured. Set TELEGRAM_BOT_TOKEN in Netlify environment variables.' };
     }
 
-    let update;
-    try {
-          update = JSON.parse(event.body);
-    } catch (e) {
-          return { statusCode: 400, body: 'Invalid JSON' };
+    const params = event.queryStringParameters || {};
+
+    // ?setup=true — register the webhook automatically
+    if (params.setup === 'true') {
+      const webhookUrl = `https://${event.headers.host}/.netlify/functions/telegram`;
+      try {
+        const r = await fetch(`https://api.telegram.org/bot${botToken}/setWebhook`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: webhookUrl, allowed_updates: ['message', 'edited_message'] })
+        });
+        const result = await r.json();
+        return {
+          statusCode: 200,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'setWebhook', webhookUrl, result })
+        };
+      } catch (e) {
+        return { statusCode: 500, body: 'Webhook setup failed: ' + e.message };
+      }
     }
 
-    // Handle regular messages
-    const msg = update.message || update.edited_message;
-    if (!msg || !msg.text) {
-          return { statusCode: 200, body: 'OK' };
+    // ?info=true — get current webhook info
+    if (params.info === 'true') {
+      try {
+        const r = await fetch(`https://api.telegram.org/bot${botToken}/getWebhookInfo`);
+        const result = await r.json();
+        return {
+          statusCode: 200,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(result)
+        };
+      } catch (e) {
+        return { statusCode: 500, body: 'Info failed: ' + e.message };
+      }
     }
 
-    const chatId = msg.chat.id;
-    const userMessage = msg.text.trim();
-    const userName = msg.from?.first_name || 'there';
+    // Default GET: health check
+    return {
+      statusCode: 200,
+      body: 'House of Keysha Empire — Telegram Bot Active. Visit ?setup=true to register webhook, ?info=true to check webhook status.'
+    };
+  }
 
-    // Skip commands except /start
-    if (userMessage.startsWith('/') && userMessage !== '/start') {
-          return { statusCode: 200, body: 'OK' };
-    }
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, body: 'Method Not Allowed' };
+  }
 
-    // Handle /start
-    const messageToProcess = userMessage === '/start'
-      ? `Hello, my name is ${userName} and I just started a conversation.`
-          : userMessage;
+  if (!botToken) {
+    return { statusCode: 500, body: 'Bot token not configured' };
+  }
 
-    // Get/init conversation history
-    if (!conversations[chatId]) {
-          conversations[chatId] = [];
-    }
+  let update;
+  try {
+    update = JSON.parse(event.body);
+  } catch (e) {
+    return { statusCode: 400, body: 'Invalid JSON' };
+  }
 
-    // Get AI reply
-    const reply = await getAIReply(messageToProcess, conversations[chatId]);
-
-    // Update conversation history
-    conversations[chatId].push(
-      { role: 'user', content: messageToProcess },
-      { role: 'assistant', content: reply }
-        );
-
-    // Keep only last 10 exchanges
-    if (conversations[chatId].length > 20) {
-          conversations[chatId] = conversations[chatId].slice(-20);
-    }
-
-    // Send reply
-    await sendTelegramMessage(chatId, reply, botToken);
-
+  // Handle regular messages
+  const msg = update.message || update.edited_message;
+  if (!msg || !msg.text) {
     return { statusCode: 200, body: 'OK' };
+  }
+
+  const chatId = msg.chat.id;
+  const userMessage = msg.text.trim();
+  const userName = msg.from?.first_name || 'there';
+
+  // Skip commands except /start
+  if (userMessage.startsWith('/') && userMessage !== '/start') {
+    return { statusCode: 200, body: 'OK' };
+  }
+
+  // Handle /start
+  const messageToProcess = userMessage === '/start'
+    ? `Hello, my name is ${userName} and I just started a conversation.`
+    : userMessage;
+
+  // Get/init conversation history
+  if (!conversations[chatId]) {
+    conversations[chatId] = [];
+  }
+
+  // Get AI reply
+  const reply = await getAIReply(messageToProcess, conversations[chatId]);
+
+  // Update conversation history
+  conversations[chatId].push(
+    { role: 'user', content: messageToProcess },
+    { role: 'assistant', content: reply }
+  );
+
+  // Keep only last 20 messages
+  if (conversations[chatId].length > 20) {
+    conversations[chatId] = conversations[chatId].slice(-20);
+  }
+
+  // Send reply
+  await sendTelegramMessage(chatId, reply, botToken);
+
+  return { statusCode: 200, body: 'OK' };
 };
