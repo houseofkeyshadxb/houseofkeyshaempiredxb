@@ -12,7 +12,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- CONVERSION TRACKING PLACEHOLDERS -->
 <!-- Google Analytics -->
@@ -59,14 +59,14 @@
 }
 
 :root {
-  --midnight: #0A0E27;
-  --deep-purple: #2D1B4E;
-  --rose-gold: #E8B4B8;
-  --champagne: #F7E7CE;
-  --silver: #C0C0C0;
-  --charcoal: #1A1A2E;
-  --accent: #B565D8;
+  --black: #000000;
+  --red: #DC143C;
+  --red-dark: #A00028;
+  --gold: #FFD700;
+  --gold-dark: #DAA520;
   --white: #FFFFFF;
+  --grey: #333333;
+  --grey-light: #666666;
 }
 
 html {
@@ -74,84 +74,80 @@ html {
 }
 
 body {
-  background: var(--midnight);
-  color: var(--champagne);
-  font-family: 'Inter', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
   overflow-x: hidden;
-  line-height: 1.7;
 }
 
 /* AGE GATE */
 #age-gate {
   position: fixed;
   inset: 0;
-  background: linear-gradient(135deg, var(--midnight) 0%, var(--deep-purple) 100%);
+  background: #000;
   z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 2rem;
   padding: 2rem;
   text-align: center;
 }
 
 #age-gate h1 {
-  font-family: 'Cormorant Garamond', serif;
-  color: var(--rose-gold);
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 600;
-  letter-spacing: 3px;
+  font-family: 'Playfair Display', serif;
+  color: var(--gold);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
 }
 
 #age-gate p {
-  color: var(--silver);
-  max-width: 650px;
-  font-size: 1.05rem;
-  line-height: 1.9;
-  font-weight: 300;
+  color: #999;
+  max-width: 600px;
+  font-size: 1.1rem;
+  line-height: 1.8;
 }
 
 .gate-btns {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .gate-btn {
-  padding: 1.3rem 3.5rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.95rem;
+  padding: 1.2rem 3rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
   font-weight: 600;
   border: none;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  border-radius: 2px;
+  letter-spacing: 1px;
 }
 
 .gate-btn.yes {
-  background: linear-gradient(135deg, var(--accent), var(--rose-gold));
-  color: var(--midnight);
-  box-shadow: 0 8px 30px rgba(181, 101, 216, 0.4);
+  background: var(--red);
+  color: var(--gold);
+  border: 2px solid var(--gold);
 }
 
 .gate-btn.yes:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(181, 101, 216, 0.6);
+  background: var(--red-dark);
+  transform: scale(1.05);
 }
 
 .gate-btn.no {
   background: transparent;
-  color: var(--silver);
-  border: 2px solid var(--silver);
+  color: #666;
+  border: 2px solid #666;
 }
 
 .gate-btn.no:hover {
-  border-color: var(--champagne);
-  color: var(--champagne);
+  border-color: #999;
+  color: #999;
 }
 
 /* NAVIGATION */
@@ -160,88 +156,87 @@ nav {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(10, 14, 39, 0.95);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(232, 180, 184, 0.2);
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--red);
   z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 4rem;
-  transition: all 0.3s;
+  padding: 1rem 3rem;
 }
 
 .nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--rose-gold);
-  letter-spacing: 4px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 2px;
 }
 
 .nav-buttons {
   display: flex;
-  gap: 1.2rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
 .nav-btn {
   background: transparent;
-  border: 1px solid var(--accent);
-  color: var(--champagne);
-  padding: 0.8rem 1.8rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
+  border: 2px solid var(--red);
+  color: var(--gold);
+  padding: 0.7rem 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  border-radius: 2px;
+  letter-spacing: 1px;
 }
 
 .nav-btn:hover,
 .nav-btn.active {
-  background: linear-gradient(135deg, var(--accent), var(--rose-gold));
-  border-color: transparent;
-  color: var(--midnight);
-  transform: translateY(-2px);
+  background: var(--red);
+  border-color: var(--gold);
+  color: var(--black);
 }
 
-/* HERO SECTION */
+/* HERO SECTION - FULL SCREEN VIDEO WITH FLOATING CARD */
 .hero {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 8rem 5% 4rem;
-  background: linear-gradient(135deg, var(--midnight) 0%, var(--deep-purple) 50%, var(--charcoal) 100%);
+  justify-content: flex-start;
+  padding: 0 5%;
   overflow: hidden;
+  background: linear-gradient(135deg, #000 0%, #1a0000 50%, #000 100%);
 }
 
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 20% 50%, rgba(181, 101, 216, 0.15), transparent 50%),
-    radial-gradient(circle at 80% 50%, rgba(232, 180, 184, 0.1), transparent 50%);
+  background: url('/images/portraits/mistress-keysha-hero.jpg') center/cover;
+  opacity: 0.3;
   z-index: 0;
 }
 
-.hero-content {
+.hero-card {
   position: relative;
   z-index: 1;
-  max-width: 900px;
-  text-align: center;
-  animation: fadeInUp 1.2s ease;
+  background: linear-gradient(135deg, rgba(220, 20, 60, 0.15), rgba(0, 0, 0, 0.9));
+  border: 3px solid var(--gold);
+  padding: 4rem 3rem;
+  max-width: 700px;
+  box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
+  animation: fadeInUp 1s ease;
 }
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -251,97 +246,86 @@ nav {
 
 .hero-badge {
   display: inline-block;
-  background: rgba(181, 101, 216, 0.2);
-  color: var(--rose-gold);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 600;
-  padding: 0.6rem 1.8rem;
-  margin-bottom: 2rem;
+  background: var(--red);
+  color: var(--gold);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.5rem 1.5rem;
+  margin-bottom: 1.5rem;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  border: 1px solid var(--accent);
-  border-radius: 50px;
+  letter-spacing: 2px;
+  border: 2px solid var(--gold);
 }
 
 .hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3.5rem, 10vw, 7rem);
-  font-weight: 600;
-  color: var(--champagne);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 900;
+  color: var(--gold);
   line-height: 1.1;
-  margin-bottom: 1.5rem;
-  letter-spacing: 2px;
-}
-
-.hero-title-gradient {
-  background: linear-gradient(135deg, var(--rose-gold), var(--accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  margin-bottom: 1rem;
+  text-shadow: 3px 3px 0 var(--red);
 }
 
 .hero-subtitle {
-  font-size: clamp(1.3rem, 3vw, 2rem);
-  color: var(--silver);
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: var(--white);
   font-weight: 300;
   margin-bottom: 2rem;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
 .hero-desc {
-  font-size: 1.15rem;
-  line-height: 1.9;
-  color: var(--champagne);
-  margin-bottom: 3rem;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  font-weight: 300;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #ddd;
+  margin-bottom: 2.5rem;
 }
 
 .hero-cta {
   display: flex;
   gap: 1.5rem;
-  justify-content: center;
   flex-wrap: wrap;
 }
 
 .cta-btn {
-  padding: 1.4rem 3.5rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
+  padding: 1.3rem 3rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 2px;
+  letter-spacing: 1.5px;
+  transition: all 0.3s;
+  border: 3px solid;
   cursor: pointer;
-  border: none;
 }
 
 .cta-primary {
-  background: linear-gradient(135deg, var(--accent), var(--rose-gold));
-  color: var(--midnight);
-  box-shadow: 0 10px 40px rgba(181, 101, 216, 0.3);
+  background: var(--red);
+  color: var(--gold);
+  border-color: var(--gold);
 }
 
 .cta-primary:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 50px rgba(181, 101, 216, 0.5);
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--red);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
 }
 
 .cta-secondary {
   background: transparent;
-  color: var(--champagne);
-  border: 1px solid var(--champagne);
+  color: var(--gold);
+  border-color: var(--gold);
 }
 
 .cta-secondary:hover {
-  background: var(--champagne);
-  color: var(--midnight);
-  transform: translateY(-4px);
+  background: var(--gold);
+  color: var(--black);
+  transform: translateY(-3px);
 }
 
 /* PERSONAS */
@@ -355,9 +339,9 @@ nav {
 
 /* SECTION STYLING */
 .section {
-  padding: 7rem 5%;
+  padding: 6rem 5%;
   opacity: 0;
-  animation: fadeIn 1s ease forwards;
+  animation: fadeIn 0.8s ease forwards;
 }
 
 @keyframes fadeIn {
@@ -367,95 +351,72 @@ nav {
 }
 
 .section-dark {
-  background: var(--charcoal);
-}
-
-.section-alt {
-  background: linear-gradient(135deg, var(--deep-purple) 0%, var(--midnight) 100%);
+  background: var(--grey);
 }
 
 .section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.8rem, 6vw, 4.5rem);
-  font-weight: 600;
-  color: var(--rose-gold);
-  margin-bottom: 1.5rem;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 1rem;
   text-align: center;
-  letter-spacing: 2px;
 }
 
 .section-subtitle {
   text-align: center;
-  color: var(--silver);
-  font-size: 1.15rem;
-  margin-bottom: 5rem;
+  color: #aaa;
+  font-size: 1.2rem;
+  margin-bottom: 4rem;
   font-weight: 300;
-  letter-spacing: 1px;
 }
 
 /* TWO COLUMN LAYOUT */
 .two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  gap: 4rem;
   align-items: center;
-  max-width: 1500px;
+  max-width: 1400px;
   margin: 0 auto;
-}
-
-.col-img {
-  position: relative;
-}
-
-.col-img::before {
-  content: '';
-  position: absolute;
-  inset: -20px;
-  background: linear-gradient(135deg, var(--accent), var(--rose-gold));
-  opacity: 0.15;
-  z-index: -1;
-  border-radius: 4px;
 }
 
 .col-img img {
   width: 100%;
   height: auto;
-  border-radius: 4px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 3px solid var(--red);
+  box-shadow: 0 10px 40px rgba(220, 20, 60, 0.4);
 }
 
 .col-text h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.8rem;
-  color: var(--rose-gold);
-  margin-bottom: 2rem;
-  font-weight: 600;
-  letter-spacing: 1px;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
 }
 
 .col-text p {
   font-size: 1.1rem;
-  line-height: 2;
-  color: var(--champagne);
-  margin-bottom: 1.8rem;
-  font-weight: 300;
+  line-height: 1.9;
+  color: #ccc;
+  margin-bottom: 1.5rem;
 }
 
 /* SERVICES GRID */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.5rem;
-  max-width: 1500px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .service-card {
-  background: rgba(45, 27, 78, 0.3);
-  border: 1px solid rgba(232, 180, 184, 0.2);
-  border-radius: 8px;
-  padding: 3rem 2.5rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(135deg, rgba(220, 20, 60, 0.1), rgba(0, 0, 0, 0.8));
+  border: 2px solid var(--red);
+  border-left: 6px solid var(--gold);
+  padding: 3rem 2rem;
+  transition: all 0.4s;
   position: relative;
   overflow: hidden;
 }
@@ -463,11 +424,11 @@ nav {
 .service-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(135deg, var(--accent), var(--rose-gold));
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.05), transparent);
   opacity: 0;
   transition: opacity 0.4s;
 }
@@ -478,9 +439,8 @@ nav {
 
 .service-card:hover {
   transform: translateY(-8px);
-  border-color: var(--accent);
-  box-shadow: 0 20px 60px rgba(181, 101, 216, 0.3);
-  background: rgba(45, 27, 78, 0.5);
+  border-color: var(--gold);
+  box-shadow: 0 15px 50px rgba(255, 215, 0, 0.3);
 }
 
 .service-icon {
@@ -489,129 +449,121 @@ nav {
 }
 
 .service-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--rose-gold);
-  margin-bottom: 1.2rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .service-desc {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: var(--champagne);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #bbb;
   margin-bottom: 1.5rem;
-  font-weight: 300;
 }
 
 .service-price {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--accent);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--red);
   margin-top: 1rem;
 }
 
 /* PACKAGES */
 .packages-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 3rem;
-  max-width: 1500px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .package-card {
-  background: rgba(26, 26, 46, 0.6);
-  border: 1px solid rgba(232, 180, 184, 0.2);
-  border-radius: 8px;
-  padding: 3.5rem 3rem;
+  background: var(--black);
+  border: 3px solid var(--red);
+  padding: 3rem 2.5rem;
   text-align: center;
   position: relative;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s;
 }
 
 .package-card.featured {
-  border: 2px solid var(--accent);
-  background: rgba(45, 27, 78, 0.4);
-  transform: scale(1.03);
-  box-shadow: 0 20px 60px rgba(181, 101, 216, 0.4);
+  border-color: var(--gold);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(0, 0, 0, 0.9));
+  transform: scale(1.05);
 }
 
 .package-card.featured::before {
-  content: 'POPULAR CHOICE';
+  content: 'MOST POPULAR';
   position: absolute;
-  top: -15px;
+  top: -18px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, var(--accent), var(--rose-gold));
-  color: var(--midnight);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
+  background: var(--gold);
+  color: var(--black);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
   font-weight: 700;
   padding: 0.5rem 2rem;
   letter-spacing: 2px;
-  border-radius: 50px;
 }
 
 .package-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 25px 70px rgba(181, 101, 216, 0.3);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(220, 20, 60, 0.4);
 }
 
 .package-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.2rem;
-  font-weight: 600;
-  color: var(--rose-gold);
-  margin-bottom: 1.8rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .package-price {
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 300;
-  color: var(--champagne);
+  color: var(--red);
   margin-bottom: 0.5rem;
-  font-family: 'Cormorant Garamond', serif;
 }
 
 .package-price span {
-  font-size: 1.3rem;
-  color: var(--silver);
-  font-weight: 300;
+  font-size: 1.2rem;
+  color: #888;
 }
 
 .package-features {
   list-style: none;
   text-align: left;
-  margin: 3rem 0;
+  margin: 2.5rem 0;
 }
 
 .package-features li {
-  padding: 1.2rem 0;
-  border-bottom: 1px solid rgba(232, 180, 184, 0.1);
-  color: var(--champagne);
-  font-size: 1.05rem;
-  font-weight: 300;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(220, 20, 60, 0.3);
+  color: #ccc;
+  font-size: 1rem;
 }
 
 .package-features li::before {
   content: '✓ ';
-  color: var(--accent);
+  color: var(--gold);
   font-weight: 700;
-  margin-right: 1rem;
+  margin-right: 0.8rem;
 }
 
 /* GALLERY */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
-  max-width: 1500px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -619,16 +571,16 @@ nav {
   aspect-ratio: 3/4;
   overflow: hidden;
   position: relative;
-  border-radius: 8px;
+  border: 3px solid var(--red);
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s;
 }
 
 .gallery-item::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(181, 101, 216, 0.7), transparent);
+  background: linear-gradient(to top, rgba(220, 20, 60, 0.7), transparent);
   opacity: 0;
   transition: opacity 0.4s;
   z-index: 1;
@@ -642,50 +594,16 @@ nav {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.gallery-item:hover {
-  transform: scale(1.03);
-  box-shadow: 0 15px 50px rgba(181, 101, 216, 0.4);
-}
-
-.gallery-item:hover img {
-  transform: scale(1.1);
-}
-
-/* LIFESTYLE GRID */
-.lifestyle-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2.5rem;
-  max-width: 1500px;
-  margin: 0 auto;
-}
-
-.lifestyle-item {
-  aspect-ratio: 4/5;
-  overflow: hidden;
-  position: relative;
-  border-radius: 8px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-  transition: all 0.4s;
-}
-
-.lifestyle-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   transition: transform 0.5s;
 }
 
-.lifestyle-item:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(181, 101, 216, 0.4);
+.gallery-item:hover {
+  border-color: var(--gold);
+  transform: scale(1.05);
 }
 
-.lifestyle-item:hover img {
-  transform: scale(1.08);
+.gallery-item:hover img {
+  transform: scale(1.15);
 }
 
 /* CONTACT BUTTONS */
@@ -701,121 +619,114 @@ nav {
   display: inline-flex;
   align-items: center;
   gap: 1rem;
-  padding: 1.3rem 2.8rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
+  padding: 1.2rem 2.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
   font-weight: 600;
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  border: 1px solid;
-  border-radius: 2px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 1px;
+  border: 2px solid;
+  transition: all 0.3s;
 }
 
 .contact-btn.whatsapp {
   border-color: #25D366;
   color: #25D366;
-  background: rgba(37, 211, 102, 0.1);
 }
 
 .contact-btn.whatsapp:hover {
   background: #25D366;
-  color: var(--midnight);
+  color: #000;
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
 }
 
 .contact-btn.telegram {
   border-color: #229ED9;
   color: #229ED9;
-  background: rgba(34, 158, 217, 0.1);
 }
 
 .contact-btn.telegram:hover {
   background: #229ED9;
-  color: var(--white);
+  color: #fff;
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(34, 158, 217, 0.4);
 }
 
 .contact-btn.niteflirt {
-  border-color: var(--rose-gold);
-  color: var(--rose-gold);
-  background: rgba(232, 180, 184, 0.1);
+  border-color: var(--gold);
+  color: var(--gold);
 }
 
 .contact-btn.niteflirt:hover {
-  background: var(--rose-gold);
-  color: var(--midnight);
+  background: var(--gold);
+  color: #000;
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(232, 180, 184, 0.4);
 }
 
 .contact-btn.onlyfans {
   border-color: #00AFF0;
   color: #00AFF0;
-  background: rgba(0, 175, 240, 0.1);
 }
 
 .contact-btn.onlyfans:hover {
   background: #00AFF0;
-  color: var(--white);
+  color: #fff;
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(0, 175, 240, 0.4);
 }
 
 /* FLOATING CONTACTS */
 .float-contacts {
   position: fixed;
-  right: 2.5rem;
-  bottom: 2.5rem;
+  right: 2rem;
+  bottom: 2rem;
   z-index: 500;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1rem;
 }
 
 .float-btn {
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
   text-decoration: none;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
 }
 
 .float-btn:hover {
-  transform: scale(1.15) rotate(10deg);
+  transform: scale(1.2);
 }
 
 .float-btn.wa {
-  background: linear-gradient(135deg, #25D366, #128C7E);
+  background: #25D366;
+  border: 3px solid #fff;
 }
 
 .float-btn.tg {
-  background: linear-gradient(135deg, #229ED9, #0088cc);
+  background: #229ED9;
+  border: 3px solid #fff;
 }
 
 /* FOOTER */
 footer {
-  background: var(--charcoal);
-  border-top: 1px solid rgba(232, 180, 184, 0.2);
-  padding: 5rem 5% 3rem;
+  background: #000;
+  border-top: 3px solid var(--red);
+  padding: 4rem 5%;
   text-align: center;
 }
 
 .footer-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.8rem;
-  font-weight: 600;
-  color: var(--rose-gold);
-  margin-bottom: 2.5rem;
-  letter-spacing: 4px;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  letter-spacing: 3px;
 }
 
 .footer-links {
@@ -823,41 +734,39 @@ footer {
   gap: 3rem;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .footer-links a {
-  color: var(--champagne);
+  color: var(--gold);
   text-decoration: none;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   transition: color 0.3s;
-  letter-spacing: 1px;
 }
 
 .footer-links a:hover {
-  color: var(--rose-gold);
+  color: var(--red);
 }
 
 footer p {
-  color: var(--silver);
+  color: #888;
   font-size: 0.95rem;
   line-height: 2;
   margin-bottom: 0.5rem;
-  font-weight: 300;
 }
 
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   nav {
     flex-direction: column;
-    gap: 1.5rem;
-    padding: 1.5rem 2rem;
+    gap: 1rem;
+    padding: 1.5rem;
   }
 
   .two-col {
     grid-template-columns: 1fr;
-    gap: 3.5rem;
+    gap: 3rem;
   }
 
   .packages-grid {
@@ -871,33 +780,35 @@ footer p {
 
 @media (max-width: 768px) {
   .hero {
-    padding: 6rem 2rem 3rem;
+    padding: 2rem;
+  }
+
+  .hero-card {
+    padding: 3rem 2rem;
   }
 
   .section {
-    padding: 5rem 2rem;
+    padding: 4rem 2rem;
   }
 
-  .services-grid,
-  .lifestyle-grid,
-  .gallery-grid {
+  .services-grid {
     grid-template-columns: 1fr;
   }
 
   .nav-btn {
     font-size: 0.75rem;
-    padding: 0.7rem 1.5rem;
+    padding: 0.6rem 1.2rem;
   }
 
   .float-contacts {
-    right: 1.5rem;
-    bottom: 1.5rem;
+    right: 1rem;
+    bottom: 1rem;
   }
 
   .float-btn {
-    width: 56px;
-    height: 56px;
-    font-size: 1.7rem;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
   }
 }
 </style>
@@ -906,13 +817,13 @@ footer p {
 
 <!-- AGE GATE -->
 <div id="age-gate">
-  <h1>ADULTS ONLY</h1>
+  <h1>🔞 ADULTS ONLY</h1>
   <p>This website contains adult content and is intended for those 18 years and older. By entering, you confirm you are of legal age in your jurisdiction and consent to viewing adult material.</p>
   <div class="gate-btns">
-    <button class="gate-btn yes" onclick="enterSite()">I AM 18+ ENTER</button>
+    <button class="gate-btn yes" onclick="enterSite()">I AM 18+ — ENTER</button>
     <button class="gate-btn no" onclick="window.location.href='https://google.com'">EXIT</button>
   </div>
-  <p style="font-size:0.9rem;margin-top:1.5rem;">100% Discreet Billing • Complete Privacy Guaranteed</p>
+  <p style="font-size:0.9rem;margin-top:1.5rem;">🔒 100% Discreet Billing • Complete Privacy Guaranteed</p>
 </div>
 
 <!-- NAVIGATION -->
@@ -930,14 +841,16 @@ footer p {
   <a href="https://t.me/keysha_zara" target="_blank" class="float-btn tg" title="Telegram" onclick="trackConversion('telegram_float')">✈️</a>
 </div>
 
+<!-- ═══════════════════════════════════════════════════════════ -->
 <!-- MISTRESS KEYSHA SECTION -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <section id="persona-keysha" class="persona-section active">
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-content">
-      <div class="hero-badge">ELITE DOMINATRIX</div>
-      <h1 class="hero-title"><span class="hero-title-gradient">MISTRESS</span> KEYSHA</h1>
+    <div class="hero-card">
+      <div class="hero-badge">DOMINATRIX • FEMDOM • ELITE</div>
+      <h1 class="hero-title">MISTRESS KEYSHA</h1>
       <p class="hero-subtitle">Dubai's Supreme Dominatrix</p>
       <p class="hero-desc">Real power. Real surrender. No games. You kneel or you leave. Mistress Keysha commands Dubai's most exclusive BDSM empire. Serious devotees only.</p>
       <div class="hero-cta">
@@ -964,12 +877,12 @@ footer p {
   </div>
 
   <!-- DOMINANCE PACKAGES -->
-  <div class="section section-alt">
+  <div class="section section-dark">
     <h2 class="section-title">DOMINANCE PACKAGES</h2>
     <p class="section-subtitle">Choose your surrender</p>
     <div class="packages-grid">
       <div class="package-card">
-        <div class="package-name">KNEEL, INSECT</div>
+        <div class="package-name">🖤 KNEEL, INSECT</div>
         <div class="package-price">1,800<span> AED</span></div>
         <ul class="package-features">
           <li>First contact with true Domme energy</li>
@@ -982,7 +895,7 @@ footer p {
       </div>
 
       <div class="package-card featured">
-        <div class="package-name">FINANCIAL LEASH</div>
+        <div class="package-name">⛓️ FINANCIAL LEASH</div>
         <div class="package-price">2,500<span> AED</span></div>
         <ul class="package-features">
           <li>Findom/devotion experience</li>
@@ -995,7 +908,7 @@ footer p {
       </div>
 
       <div class="package-card">
-        <div class="package-name">CRUEL QUEEN</div>
+        <div class="package-name">🔪 CRUEL QUEEN</div>
         <div class="package-price">3,200<span> AED</span></div>
         <ul class="package-features">
           <li>Full sadistic experience</li>
@@ -1010,7 +923,7 @@ footer p {
   </div>
 
   <!-- SANCTUARY SERVICES -->
-  <div class="section section-dark">
+  <div class="section">
     <h2 class="section-title">KEYSHA'S SANCTUARY</h2>
     <p class="section-subtitle">Therapy & Consultation Services</p>
     <div class="services-grid">
@@ -1059,7 +972,7 @@ footer p {
   </div>
 
   <!-- SANCTUARY BUNDLES -->
-  <div class="section section-alt">
+  <div class="section section-dark">
     <h2 class="section-title">SANCTUARY BUNDLES</h2>
     <p class="section-subtitle">Complete transformation packages</p>
     <div class="packages-grid">
@@ -1127,7 +1040,7 @@ footer p {
   </div>
 
   <!-- GALLERY -->
-  <div class="section section-dark">
+  <div class="section">
     <h2 class="section-title">GALLERY</h2>
     <p class="section-subtitle">A glimpse into the Empire</p>
     <div class="gallery-grid">
@@ -1167,60 +1080,8 @@ footer p {
     </div>
   </div>
 
-  <!-- LIFESTYLE SECTION -->
-  <div class="section section-alt">
-    <h2 class="section-title">LIFESTYLE</h2>
-    <p class="section-subtitle">Beyond the sessions</p>
-    <div class="lifestyle-grid">
-      <div class="lifestyle-item">
-        <img src="/images/lifestyle/pinterest-1.jpg" alt="Lifestyle 1">
-      </div>
-      <div class="lifestyle-item">
-        <img src="/images/lifestyle/pinterest-2.jpg" alt="Lifestyle 2">
-      </div>
-      <div class="lifestyle-item">
-        <img src="/images/lifestyle/pinterest-3.jpg" alt="Lifestyle 3">
-      </div>
-      <div class="lifestyle-item">
-        <img src="/images/lifestyle/pinterest-4.jpg" alt="Lifestyle 4">
-      </div>
-      <div class="lifestyle-item">
-        <img src="/images/lifestyle/pinterest-5.jpg" alt="Lifestyle 5">
-      </div>
-      <div class="lifestyle-item">
-        <img src="/images/lifestyle/pinterest-6.jpg" alt="Lifestyle 6">
-      </div>
-    </div>
-  </div>
-
-  <!-- RED OUTFIT COLLECTION -->
-  <div class="section section-dark">
-    <h2 class="section-title">RED COLLECTION</h2>
-    <p class="section-subtitle">Power in crimson</p>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="/images/portraits/snapchat-red-outfit-1.jpg" alt="Red Outfit 1">
-      </div>
-      <div class="gallery-item">
-        <img src="/images/portraits/snapchat-red-outfit-2.jpg" alt="Red Outfit 2">
-      </div>
-      <div class="gallery-item">
-        <img src="/images/portraits/snapchat-red-outfit-3.jpg" alt="Red Outfit 3">
-      </div>
-      <div class="gallery-item">
-        <img src="/images/portraits/snapchat-red-outfit-4.jpg" alt="Red Outfit 4">
-      </div>
-      <div class="gallery-item">
-        <img src="/images/portraits/snapchat-red-outfit-5.jpg" alt="Red Outfit 5">
-      </div>
-      <div class="gallery-item">
-        <img src="/images/portraits/portrait-glam-1.jpg" alt="Glamour Portrait">
-      </div>
-    </div>
-  </div>
-
   <!-- CONTACT -->
-  <div class="section section-alt">
+  <div class="section section-dark">
     <h2 class="section-title">READY TO SUBMIT?</h2>
     <p class="section-subtitle">Your transformation begins with a single message</p>
     <div class="contact-bar">
@@ -1233,14 +1094,16 @@ footer p {
 
 </section>
 
+<!-- ═══════════════════════════════════════════════════════════ -->
 <!-- BECKY SECTION -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <section id="persona-becky" class="persona-section">
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-content">
-      <div class="hero-badge">GIRLFRIEND EXPERIENCE</div>
-      <h1 class="hero-title"><span class="hero-title-gradient">BECKY</span></h1>
+    <div class="hero-card">
+      <div class="hero-badge">GIRLFRIEND EXPERIENCE • COMPANION</div>
+      <h1 class="hero-title">BECKY</h1>
       <p class="hero-subtitle">Your Perfect Companion</p>
       <p class="hero-desc">Sweet, attentive, unforgettable. The girlfriend experience you've been dreaming of. No judgment. Just pleasure and genuine connection.</p>
       <div class="hero-cta">
@@ -1267,7 +1130,7 @@ footer p {
   </div>
 
   <!-- SERVICES -->
-  <div class="section section-alt">
+  <div class="section section-dark">
     <h2 class="section-title">SERVICES</h2>
     <p class="section-subtitle">Tailored experiences just for you</p>
     <div class="services-grid">
@@ -1295,12 +1158,12 @@ footer p {
   </div>
 
   <!-- DUO PACKAGES -->
-  <div class="section section-dark">
+  <div class="section">
     <h2 class="section-title">DUO PACKAGES</h2>
     <p class="section-subtitle">Keysha + Becky together</p>
     <div class="packages-grid">
       <div class="package-card">
-        <div class="package-name">DOUBLE COMMAND</div>
+        <div class="package-name">👑 DOUBLE COMMAND</div>
         <div class="package-price">4,500<span> AED</span></div>
         <ul class="package-features">
           <li>Keysha commands Becky, you watch</li>
@@ -1312,7 +1175,7 @@ footer p {
       </div>
 
       <div class="package-card featured">
-        <div class="package-name">OWN THEM BOTH</div>
+        <div class="package-name">🔗 OWN THEM BOTH</div>
         <div class="package-price">5,500<span> AED</span></div>
         <ul class="package-features">
           <li>You own Becky, Keysha owns you</li>
@@ -1326,23 +1189,23 @@ footer p {
   </div>
 
   <!-- GALLERY -->
-  <div class="section section-alt">
+  <div class="section section-dark">
     <h2 class="section-title">GALLERY</h2>
     <div class="gallery-grid">
       <div class="gallery-item">
-        <img src="/images/portraits/mistress-keysha.jpg" alt="Becky 1">
+        <img src="/images/portraits/Snapchat-2069426987.jpg" alt="Becky 1">
       </div>
       <div class="gallery-item">
-        <img src="/images/events/house-of-keysha-playroom.jpg" alt="Playroom">
+        <img src="/images/portraits/Snapchat-404199871.jpg" alt="Becky 2">
       </div>
       <div class="gallery-item">
-        <img src="/images/events/slave-farm-celebrations.jpg" alt="Events">
+        <img src="/images/portraits/Snapchat-422503912.jpg" alt="Becky 3">
       </div>
     </div>
   </div>
 
   <!-- CONTACT -->
-  <div class="section section-dark">
+  <div class="section">
     <h2 class="section-title">BOOK BECKY</h2>
     <p class="section-subtitle">Let's create something special together</p>
     <div class="contact-bar">
@@ -1363,7 +1226,7 @@ footer p {
     <a href="https://wa.me/971567620449">Contact</a>
   </div>
   <p>Dubai, UAE • Premium Adult Entertainment</p>
-  <p>100% Discreet • Secure Billing • Complete Confidentiality</p>
+  <p>🔒 All bookings are 100% discreet • Secure billing • Complete confidentiality</p>
   <p style="margin-top:2rem;font-size:0.85rem;">© 2026 House of Keysha Empire. All rights reserved. Adults only (18+).</p>
 </footer>
 
