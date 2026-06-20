@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>House of Keysha • Leads Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&amp;display=swap');
+    
+    :root {
+      --gold: #D4AF77;
+    }
+    
+    body {
+      font-family: 'Inter', system_ui, sans-serif;
+    }
+    
+    .heading-serif {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    .luxury-gradient {
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    }
+
+    .lead-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .lead-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
+
+    .label-badge {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .label-High-Value { background-color: #166534; color: #86efac; }
+    .label-Time-Waster { background-color: #7f1d1d; color: #fca5a5; }
+    .label-Devotee { background-color: #1e3a8a; color: #93c5fd; }
+    .label-Empire-Property { background-color: #581c87; color: #d8b4fe; }
+    .label-Becky-Client { background-color: #9f1239; color: #fda4af; }
+    .label-Extreme-Player { background-color: #431407; color: #fed7aa; }
+    .label-Curious-Browser { background-color: #374151; color: #d1d5db; }
+
+    .table-row {
+      transition: background-color 0.2s ease;
+    }
+    
+    .table-row:hover {
+      background-color: #1f2937;
+    }
+
+    .section-header {
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-zinc-950 text-zinc-200">
+  <!-- Top Navigation -->
+  <nav class="border-b border-zinc-800 bg-zinc-900">
+    <div class="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
+      <div class="flex items-center gap-x-3">
+        <div class="w-9 h-9 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-xl flex items-center justify-center">
+          <i class="fa-solid fa-crown text-black text-xl"></i>
+        </div>
+        <div>
+          <span class="font-bold text-2xl tracking-tighter heading-serif">House of Keysha</span>
+          <span class="text-xs text-zinc-500 block -mt-1">EMPIRE</span>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-x-4">
+        <div class="px-4 py-1.5 bg-zinc-900 border border-zinc-700 rounded-2xl text-sm flex items-center gap-x-2">
+          <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+          <span class="text-emerald-400 text-xs font-medium">LIVE</span>
+        </div>
+        <div class="text-right">
+          <div class="text-sm font-medium">Mistress Keysha</div>
+          <div class="text-[10px] text-zinc-500">Dubai • Nairobi • London</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-7xl mx-auto px-8 py-8">
+    
+    <!-- Header -->
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <h1 class="text-4xl font-bold tracking-tighter heading-serif">Leads Dashboard</h1>
+        <p class="text-zinc-400 mt-1">Real-time view of all conversations • Powered by Maxine</p>
+      </div>
+      
+      <div class="flex items-center gap-x-3">
+        <button onclick="refreshLeads()" 
+                class="flex items-center gap-x-2 px-5 py-2.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 rounded-2xl text-sm font-medium transition-colors">
+          <i class="fa-solid fa-sync-alt"></i>
+          <span>Refresh</span>
+        </button>
+        
+        <button onclick="exportToCSV()" 
+                class="flex items-center gap-x-2 px-5 py-2.5 bg-white text-black hover:bg-amber-100 rounded-2xl text-sm font-semibold transition-colors">
+          <i class="fa-solid fa-download"></i>
+          <span>Export CSV</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5">
+        <div class="text-xs text-zinc-500 mb-1">TOTAL LEADS</div>
+        <div id="total-leads" class="text-4xl font-semibold tabular-nums">—</div>
+      </div>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5">
+        <div class="text-xs text-emerald-400 mb-1">HIGH VALUE</div>
+        <div id="high-value" class="text-4xl font-semibold tabular-nums text-emerald-400">—</div>
+      </div>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5">
+        <div class="text-xs text-amber-400 mb-1">MONTHLY CANDIDATES</div>
+        <div id="monthly-candidates" class="text-4xl font-semibold tabular-nums text-amber-400">—</div>
+      </div>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5">
+        <div class="text-xs text-rose-400 mb-1">TIME WASTERS</div>
+        <div id="time-wasters" class="text-4xl font-semibold tabular-nums text-rose-400">—</div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="flex flex-wrap items-center gap-3 mb-6">
+      <div class="relative flex-1 max-w-md">
+        <input type="text" id="search-input" placeholder="Search name, number, notes..." 
+               onkeyup="filterLeads()"
+               class="w-full bg-zinc-900 border border-zinc-700 focus:border-amber-600 transition-colors pl-11 py-3 rounded-2xl text-sm placeholder:text-zinc-500">
+        <i class="fa-solid fa-search absolute left-4 top-4 text-zinc-500"></i>
+      </div>
+      
+      <select id="label-filter" onchange="filterLeads()" 
+              class="bg-zinc-900 border border-zinc-700 px-4 py-3 rounded-2xl text-sm min-w-[180px]">
+        <option value="">All Labels</option>
+        <option value="High Value">High Value</option>
+        <option value="Devotee">Devotee</option>
+        <option value="Empire Property Candidate">Empire Property</option>
+        <option value="Becky Client">Becky Client</option>
+        <option value="Extreme Player">Extreme Player</option>
+        <option value="Time Waster">Time Waster</option>
+        <option value="Curious Browser">Curious Browser</option>
+      </select>
+      
+      <button onclick="clearFilters()" 
+              class="px-5 py-3 text-sm border border-zinc-700 hover:bg-zinc-900 rounded-2xl transition-colors">
+        Clear Filters
+      </button>
+    </div>
+
+    <!-- Leads Table -->
+    <div class="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden">
+      <table class="w-full">
+        <thead>
+          <tr class="border-b border-zinc-800 bg-zinc-950">
+            <th class="text-left px-6 py-4 text-xs font-semibold text-zinc-400">CONTACT</th>
+            <th class="text-left px-6 py-4 text-xs font-semibold text-zinc-400">LABEL</th>
+            <th class="text-left px-6 py-4 text-xs font-semibold text-zinc-400">NOTES</th>
+            <th class="text-left px-6 py-4 text-xs font-semibold text-zinc-400">BUDGET</th>
+            <th class="text-left px-6 py-4 text-xs font-semibold text-zinc-400">LAST CONTACT</th>
+            <th class="text-right px-6 py-4 text-xs font-semibold text-zinc-400 w-12"></th>
+          </tr>
+        </thead>
+        <tbody id="leads-table-body" class="divide-y divide-zinc-800 text-sm">
+          <!-- Populated by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-4 text-center text-xs text-zinc-500">
+      Data automatically synced from Maxine • Updates every 30 seconds
+    </div>
+  </div>
+
+  <script>
+    // ==================== CONFIG ====================
+    // TODO: For production, create a secure Netlify function instead of exposing keys
+    const SUPABASE_URL = 'https://YOUR-SUPABASE-URL.supabase.co';
+    const SUPABASE_ANON_KEY = 'YOUR-SUPABASE-ANON-KEY';
+    
+    let allLeads = [];
+
+    // Load leads from Supabase
+    async function loadLeads() {
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/keysha_leads?select=*&order=last_message_at.desc`, {
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) throw new Error('Failed to fetch leads');
+
+        allLeads = await response.json();
+        renderLeads(allLeads);
+        updateStats(allLeads);
+      } catch (error) {
+        console.error('Error loading leads:', error);
+        document.getElementById('leads-table-body').innerHTML = `
+          <tr>
+            <td colspan="6" class="px-6 py-12 text-center text-red-400">
+              Failed to load leads. Check Supabase connection.
+            </td>
+          </tr>
+        `;
+      }
+    }
+
+    function updateStats(leads) {
+      document.getElementById('total-leads').textContent = leads.length;
+      
+      const highValue = leads.filter(l => l.label === 'High Value').length;
+      document.getElementById('high-value').textContent = highValue;
+      
+      const monthly = leads.filter(l => l.label === 'Devotee' || l.label === 'Empire Property Candidate').length;
+      document.getElementById('monthly-candidates').textContent = monthly;
+      
+      const timeWasters = leads.filter(l => l.label === 'Time Waster').length;
+      document.getElementById('time-wasters').textContent = timeWasters;
+    }
+
+    function renderLeads(leads) {
+      const tbody = document.getElementById('leads-table-body');
+      tbody.innerHTML = '';
+
+      if (leads.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6" class="px-6 py-16 text-center">
+              <i class="fa-solid fa-inbox text-4xl text-zinc-700 mb-3"></i>
+              <div class="text-zinc-400">No leads found</div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      leads.forEach(lead => {
+        const row = document.createElement('tr');
+        row.className = 'table-row';
+        
+        const lastContact = lead.last_message_at 
+          ? new Date(lead.last_message_at).toLocaleDateString('en-GB', { 
+              day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' 
+            }) 
+          : '—';
+
+        const labelClass = lead.label ? `label-${lead.label.replace(/\s+/g, '-')}` : 'label-Curious-Browser';
+        
+        row.innerHTML = `
+          <td class="px-6 py-4">
+            <div class="font-medium">${lead.name || 'Unknown'}</div>
+            <div class="text-xs text-zinc-500 font-mono">${lead.whatsapp_number || lead.telegram_id || 'No number'}</div>
+          </td>
+          <td class="px-6 py-4">
+            ${lead.label 
+              ? `<span class="label-badge ${labelClass}">${lead.label}</span>` 
+              : `<span class="text-xs text-zinc-500">No label yet</span>`}
+          </td>
+          <td class="px-6 py-4 max-w-[280px]">
+            <div class="text-xs text-zinc-400 line-clamp-2">${lead.notes || '—'}</div>
+          </td>
+          <td class="px-6 py-4">
+            <div class="font-mono text-sm">${lead.budget || '—'}</div>
+          </td>
+          <td class="px-6 py-4 text-xs text-zinc-400">
+            ${lastContact}
+          </td>
+          <td class="px-6 py-4 text-right">
+            <button onclick="showLeadDetails('${lead.id}')" 
+                    class="text-amber-400 hover:text-amber-300 p-2">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </td>
+        `;
+        
+        tbody.appendChild(row);
+      });
+    }
+
+    function filterLeads() {
+      const searchTerm = document.getElementById('search-input').value.toLowerCase();
+      const labelFilter = document.getElementById('label-filter').value;
+
+      let filtered = allLeads;
+
+      if (searchTerm) {
+        filtered = filtered.filter(lead => 
+          (lead.name && lead.name.toLowerCase().includes(searchTerm)) ||
+          (lead.whatsapp_number && lead.whatsapp_number.includes(searchTerm)) ||
+          (lead.notes && lead.notes.toLowerCase().includes(searchTerm))
+        );
+      }
+
+      if (labelFilter) {
+        filtered = filtered.filter(lead => lead.label === labelFilter);
+      }
+
+      renderLeads(filtered);
+    }
+
+    function clearFilters() {
+      document.getElementById('search-input').value = '';
+      document.getElementById('label-filter').value = '';
+      renderLeads(allLeads);
+    }
+
+    function showLeadDetails(leadId) {
+      const lead = allLeads.find(l => l.id === leadId);
+      if (!lead) return;
+
+      const modal = document.createElement('div');
+      modal.className = 'fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4';
+      modal.innerHTML = `
+        <div class="bg-zinc-900 border border-zinc-700 rounded-3xl max-w-lg w-full p-8">
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <div class="text-2xl font-semibold">${lead.name || 'Unknown Lead'}</div>
+              <div class="text-xs text-zinc-500 font-mono mt-0.5">${lead.whatsapp_number || lead.telegram_id}</div>
+            </div>
+            <button onclick="this.closest('.fixed').remove()" class="text-zinc-400 hover:text-white text-2xl leading-none">&times;</button>
+          </div>
+
+          <div class="space-y-5 text-sm">
+            <div>
+              <div class="text-xs text-zinc-500 mb-1">LABEL</div>
+              ${lead.label ? 
+                `<span class="label-badge ${`label-${lead.label.replace(/\s+/g, '-')}`}">${lead.label}</span>` : 
+                `<span class="text-zinc-400">No label assigned yet</span>`}
+            </div>
+
+            <div>
+              <div class="text-xs text-zinc-500 mb-1">NOTES</div>
+              <div class="text-zinc-300">${lead.notes || 'No notes recorded.'}</div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <div class="text-xs text-zinc-500 mb-1">BUDGET</div>
+                <div class="font-medium">${lead.budget || 'Not specified'}</div>
+              </div>
+              <div>
+                <div class="text-xs text-zinc-500 mb-1">LOCATION</div>
+                <div class="font-medium">${lead.location || 'Unknown'}</div>
+              </div>
+            </div>
+
+            <div>
+              <div class="text-xs text-zinc-500 mb-1">LAST CONTACT</div>
+              <div>${new Date(lead.last_message_at).toLocaleString()}</div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-zinc-800 flex gap-3">
+            <button onclick="this.closest('.fixed').remove()" 
+                    class="flex-1 py-3 rounded-2xl border border-zinc-700 hover:bg-zinc-800 transition-colors text-sm font-medium">
+              Close
+            </button>
+            <button onclick="copyToClipboard('${lead.whatsapp_number || lead.telegram_id}'); this.closest('.fixed').remove()" 
+                    class="flex-1 py-3 bg-white text-black rounded-2xl text-sm font-semibold hover:bg-amber-100 transition-colors">
+              Copy Number
+            </button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.createElement('div');
+        toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-5 py-2 rounded-2xl text-sm shadow-xl';
+        toast.textContent = 'Number copied to clipboard';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 1800);
+      });
+    }
+
+    function exportToCSV() {
+      if (!allLeads.length) return alert('No leads to export');
+
+      const headers = ['Name', 'WhatsApp', 'Telegram', 'Label', 'Notes', 'Budget', 'Location', 'Last Contact'];
+      const rows = allLeads.map(lead => [
+        lead.name || '',
+        lead.whatsapp_number || '',
+        lead.telegram_id || '',
+        lead.label || '',
+        (lead.notes || '').replace(/"/g, '""'),
+        lead.budget || '',
+        lead.location || '',
+        lead.last_message_at || ''
+      ]);
+
+      let csvContent = headers.join(',') + '\n';
+      rows.forEach(row => {
+        csvContent += row.map(field => `"${field}"`).join(',') + '\n';
+      });
+
+      const blob = new Blob([csvContent], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `keysha-leads-${new Date().toISOString().split('T')[0]}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function filterLeadsOnEnter(e) {
+      if (e.key === 'Enter') filterLeads();
+    }
+
+    // Auto refresh every 30 seconds
+    function startAutoRefresh() {
+      setInterval(() => {
+        if (document.visibilityState === 'visible') {
+          loadLeads();
+        }
+      }, 30000);
+    }
+
+    // Initialize
+    function initDashboard() {
+      // Check if Supabase keys are set
+      if (SUPABASE_URL.includes('YOUR-SUPABASE')) {
+        document.getElementById('leads-table-body').innerHTML = `
+          <tr>
+            <td colspan="6" class="px-6 py-12 text-center text-amber-400">
+              <i class="fa-solid fa-exclamation-triangle text-3xl mb-3"></i><br>
+              <strong>Configuration needed</strong><br>
+              <span class="text-xs">Please update SUPABASE_URL and SUPABASE_ANON_KEY in the HTML file.</span>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      loadLeads();
+      startAutoRefresh();
+
+      // Keyboard support
+      document.getElementById('search-input').addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') filterLeads();
+      });
+    }
+
+    // Boot
+    window.onload = initDashboard;
+  </script>
+</body>
+</html>

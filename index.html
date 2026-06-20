@@ -1,606 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>Becky & Keysha | Dark Dominion • Black & Red</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>House of Keysha — Dubai Luxury Companion & BDSM Services</title>
+  <meta name="description" content="Dubai's most exclusive private dominion. Mistress Keysha & Becky offer bespoke domination, therapy, and companion experiences with absolute discretion." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&family=Space+Mono&display=swap" rel="stylesheet" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --crimson: #dc143c; --gold: #C6A962; --pureblack: #0B0B0B; --cardbg: #141414;
+      --radius: 20px;
     }
-
+    html { scroll-behavior: smooth; }
     body {
-      background: #000000;
-      font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
-      padding: 1.8rem 1rem;
-      color: #e0e0e0;
-      min-height: 100vh;
+      background: var(--pureblack); color: #e0e0e0;
+      font-family: 'Space Mono', monospace; line-height: 1.6;
     }
-
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; font-weight: 700; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .section-title {
+      font-size: 2.8rem; text-align: center; margin-bottom: 2.5rem; text-transform: uppercase;
+      letter-spacing: 4px; position: relative;
     }
-
-    /* ----- NEW LANDING SCREEN: DARK & DIRECT ----- */
-    .landing-screen {
-      text-align: center;
-      padding: 2rem 1rem;
-      animation: fade 0.5s ease;
-      border: 1px solid #4a0000;
-      border-radius: 2.5rem;
-      background: #0a0a0a;
-      box-shadow: 0 0 35px rgba(180, 0, 0, 0.25);
+    .section-title::after { content:''; display:block; width:80px; height:2px; background:var(--gold); margin:0.75rem auto 0; }
+    .btn {
+      display:inline-block; background:var(--gold); color:#000; font-weight:bold; padding:0.9rem 2.2rem;
+      border:none; border-radius:30px; cursor:pointer; font-family:'Space Mono',monospace; font-size:1rem;
+      transition:all 0.3s; text-decoration:none;
     }
-    .landing-screen h1 {
-      font-size: 2.8rem;
-      letter-spacing: 6px;
-      color: #cc0000;
-      text-shadow: 0 0 12px #990000;
-      margin-bottom: 0.75rem;
-      font-weight: 600;
+    .btn:hover { background:#fff; box-shadow:0 0 30px var(--gold); transform:scale(1.02); }
+    .btn-outline { background:transparent; border:2px solid var(--gold); color:var(--gold); }
+    .btn-outline:hover { background:var(--gold); color:#000; }
+    header {
+      background:linear-gradient(180deg,#0a0a0a 0%,#1e1e2f 100%); padding:2.5rem 1rem 1.8rem;
+      text-align:center; border-bottom:2px solid var(--gold);
     }
-    .landing-tagline {
-      color: #b0b0b0;
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-    .landing-portrait {
-      margin: 1.2rem auto 2.2rem auto;
-      max-width: 280px;
-      border-radius: 2rem;
-      overflow: hidden;
-      border: 2px solid #b30000;
-      box-shadow: 0 0 35px rgba(200, 0, 0, 0.55);
-    }
-    .landing-portrait img {
-      width: 100%;
-      display: block;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      filter: grayscale(20%) contrast(1.2);
-    }
-    .choice-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.4rem;
-      margin-top: 2rem;
-    }
-    .choice-card {
-      background: #0f0000;
-      backdrop-filter: blur(10px);
-      border: 1px solid #8b0000;
-      border-radius: 2rem;
-      padding: 1.8rem 1.2rem;
-      width: 230px;
-      cursor: pointer;
-      transition: 0.25s;
-      background: linear-gradient(145deg, #140000, #050000);
-    }
-    .choice-card:hover {
-      transform: translateY(-8px);
-      border-color: #ff2222;
-      box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
-      background: #1f0000;
-    }
-    .choice-card .emoji {
-      font-size: 2.8rem;
-      margin-bottom: 0.5rem;
-    }
-    .choice-card h3 {
-      font-size: 1.6rem;
-      color: #ff3333;
-      font-weight: 500;
-      letter-spacing: 1px;
-    }
-    .choice-card p {
-      color: #cfcfcf;
-      font-size: 0.85rem;
-    }
-
-    /* main app (hidden until choice) */
-    .app-content {
-      display: none;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 2rem;
-      border-bottom: 2px solid #b30000;
-      padding-bottom: 1rem;
-    }
-    .header h1 {
-      font-size: 2.3rem;
-      letter-spacing: 5px;
-      font-weight: 500;
-      color: #e60000;
-      text-shadow: 0 0 8px #990000;
-    }
-
-    .profile-banner {
-      position: relative;
-      border-radius: 2rem;
-      margin-bottom: 1.8rem;
-      overflow: hidden;
-      background: #120000;
-      min-height: 120px;
-      border: 1px solid #5c0000;
-    }
-    .bg-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center 30%;
-      opacity: 0.28;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .profile-info {
-      position: relative;
-      z-index: 2;
-      padding: 1.8rem;
-      text-align: center;
-      background: rgba(0,0,0,0.5);
-    }
-    .profile-info h2 {
-      font-size: 2.2rem;
-      color: #ff4d4d;
-      font-weight: 500;
-      letter-spacing: 2px;
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin: 1.5rem 0;
-    }
-
-    .package-card {
-      background: #0c0000;
-      backdrop-filter: blur(8px);
-      border-radius: 1.5rem;
-      padding: 1.3rem;
-      border: 1px solid #660000;
-      transition: all 0.2s;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    }
-    .package-card.selected-card {
-      border: 2px solid #ff1a1a;
-      box-shadow: 0 0 22px #cc0000;
-      background: #1f0000;
-    }
-    .package-title {
-      font-size: 1.4rem;
-      font-weight: bold;
-      color: #ff3333;
-    }
-    .package-price {
-      font-size: 1.9rem;
-      font-weight: bold;
-      color: #ffb3b3;
-      margin: 0.5rem 0;
-      text-shadow: 0 0 6px #990000;
-    }
-    .package-desc {
-      color: #c0b0b0;
-      font-size: 0.85rem;
-    }
-
-    .scenario-box {
-      background: #0d0000;
-      border-radius: 1.2rem;
-      padding: 1rem;
-      margin: 1.2rem 0;
-      border-left: 5px solid #e60000;
-    }
-    .scenario-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.8rem;
-    }
-    .scenario-btn {
-      background: #290000;
-      border: none;
-      padding: 0.45rem 1rem;
-      border-radius: 2rem;
-      color: #f0c0c0;
-      cursor: pointer;
-      font-size: 0.75rem;
-      transition: 0.15s;
-      border: 1px solid #4d0000;
-    }
-    .scenario-btn.selected-scenario {
-      background: #cc0000;
-      color: #fff;
-      font-weight: bold;
-      border-color: #ff6666;
-    }
-
-    .addons-group {
-      background: #140000;
-      border-radius: 1.2rem;
-      padding: 1rem;
-      margin: 1.2rem 0;
-      border: 1px solid #5e0000;
-    }
-    .addon-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.45rem 0;
-      border-bottom: 1px solid #4a0000;
-    }
-    .addon-toggle {
-      cursor: pointer;
-      background: #3d0000;
-      padding: 0.25rem 0.9rem;
-      border-radius: 2rem;
-      font-size: 0.8rem;
-      transition: 0.15s;
-      color: #ddd;
-    }
-    .addon-toggle.active {
-      background: #e60000;
-      color: #fff;
-      font-weight: bold;
-    }
-
-    .total-price {
-      font-size: 1.7rem;
-      font-weight: bold;
-      background: #1a0000;
-      display: inline-block;
-      padding: 0.4rem 1.8rem;
-      border-radius: 2rem;
-      margin: 0.8rem 0;
-      color: #ff9999;
-      border: 1px solid #b30000;
-    }
-
-    .btn-whatsapp {
-      background: #25D366;
-      border: none;
-      padding: 0.8rem 1.8rem;
-      border-radius: 2rem;
-      font-weight: bold;
-      cursor: pointer;
-      margin: 0.5rem 0.5rem 0.5rem 0;
-      color: #000;
-      letter-spacing: 0.5px;
-    }
-    .btn-copy {
-      background: #3d0000;
-      padding: 0.8rem 1.5rem;
-      border-radius: 2rem;
-      cursor: pointer;
-      border: 1px solid #b30000;
-      color: #fff;
-      font-weight: bold;
-    }
-    .warning {
-      background: #1e0000;
-      border-left: 5px solid #ff1a1a;
-      padding: 0.7rem;
-      border-radius: 1rem;
-      font-size: 0.75rem;
-      margin: 1rem 0;
-      color: #d9d9d9;
-    }
-    .toast-msg {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #b30000;
-      color: white;
-      padding: 10px 22px;
-      border-radius: 20px;
-      display: none;
-      z-index: 999;
-      font-weight: bold;
-      box-shadow: 0 0 15px red;
-    }
-    @keyframes fade {
-      from { opacity: 0; transform: translateY(14px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-    button {
-      font-family: inherit;
-    }
+    header h1 { font-size:3.6rem; color:var(--gold); letter-spacing:6px; animation:pulse-glow 4s ease-in-out infinite; }
+    @keyframes pulse-glow { 0%,100%{text-shadow:0 0 20px var(--crimson);} 50%{text-shadow:0 0 30px var(--crimson);} }
+    header .subhead { color:#bbb; font-size:1.15rem; margin-top:0.5rem; letter-spacing:2px; }
+    .nav-wrapper { position:sticky; top:0; z-index:100; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); border-bottom:1px solid rgba(240,192,64,0.15); }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto; padding:0.4rem 1.5rem; flex-wrap:wrap; }
+    nav { display:flex; flex-wrap:wrap; gap:0.4rem 0.8rem; }
+    nav a { color:#ddd; text-decoration:none; font-weight:bold; padding:0.4rem 1rem; border-radius:30px; background:rgba(255,255,255,0.04); transition:all 0.3s; font-size:0.8rem; }
+    nav a:hover { border-color:var(--gold); color:var(--gold); box-shadow:0 0 16px var(--gold); }
+    section { padding:4.5rem 0; }
+    .hero-section { min-height:70vh; display:flex; align-items:center; justify-content:center; text-align:center; }
+    .hero-content h2 { font-size:3rem; color:var(--gold); margin-bottom:1rem; }
+    .hero-content p { font-size:1.2rem; color:#bbb; margin-bottom:2rem; max-width:600px; margin-left:auto; margin-right:auto; }
+    .hero-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+    .persona-card { display:flex; flex-wrap:wrap; gap:2rem; background:var(--cardbg); padding:2.2rem; border-radius:var(--radius); margin-bottom:2rem; }
+    .persona-avatar { width:140px; height:140px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:3.8rem; flex-shrink:0; }
+    .keysha-avatar { background:#2a0000; color:var(--crimson); box-shadow:0 0 40px var(--crimson); }
+    .becky-avatar { background:#2a002a; color:#ff69b4; box-shadow:0 0 40px #ff69b4; }
+    .persona-info { flex:1; }
+    .persona-info h3 { font-size:2.2rem; margin-bottom:0.3rem; }
+    .tagline { font-style:italic; color:#aaa; margin-bottom:1rem; font-size:0.95rem; }
+    .age-gate { position:fixed; inset:0; background:rgba(0,0,0,0.97); z-index:9999; display:none; align-items:center; justify-content:center; }
+    .age-gate.visible { display:flex; }
+    .age-gate-box { max-width:460px; border:1px solid var(--gold); border-radius:var(--radius); padding:3rem 2.5rem; background:#111; text-align:center; }
+    .age-gate-box h2 { color:var(--gold); margin-bottom:1rem; }
+    .age-gate-box p { opacity:0.8; margin-bottom:2rem; }
+    .whatsapp-float { position:fixed; bottom:30px; right:30px; width:60px; height:60px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:998; box-shadow:0 8px 30px rgba(37,211,102,0.4); animation:pulse-wa 3s infinite; text-decoration:none; }
+    @keyframes pulse-wa { 0%,100%{box-shadow:0 8px 30px rgba(37,211,102,0.4);} 50%{box-shadow:0 8px 50px rgba(37,211,102,0.7);} }
+    .whatsapp-float svg { width:30px; height:30px; fill:#fff; }
   </style>
 </head>
 <body>
-<div class="container" id="appRoot">
-  <!-- LANDING SCREEN – START HERE WITH RAW DESIRE -->
-  <div id="landingScreen" class="landing-screen">
-    <h1>⚡ BECKY & KEYSHA ⚡</h1>
-    <div class="landing-tagline">🔥 black · red · absolute 🔥</div>
-    <div class="landing-portrait">
-      <img src="https://i.postimg.cc/gallery/RHBxgvP/becky-bg.jpg" alt="Becky & Keysha" onerror="this.src='https://picsum.photos/id/106/400/400'; this.onerror=null;">
-    </div>
-    <p style="margin-bottom: 0.4rem; font-size: 1.2rem; font-weight: bold; color: #ff5555;">ENTER YOUR DARK FANTASY</p>
-    <p style="margin-bottom: 2rem; opacity: 0.85; color: #ccc;">Choose the dynamic that owns you tonight</p>
-    <div class="choice-grid">
-      <div class="choice-card" data-choice="mistress">
-        <div class="emoji">⛓️👑</div>
-        <h3>Mistress Keysha</h3>
-        <p>Pure Femdom · Cruel Red Reign</p>
-      </div>
-      <div class="choice-card" data-choice="becky">
-        <div class="emoji">🧸💦</div>
-        <h3>Becky – Slut / Puppet</h3>
-        <p>Submissive · Degradation · Object</p>
-      </div>
-      <div class="choice-card" data-choice="gfe">
-        <div class="emoji">💎🥂</div>
-        <h3>GFE / Companion</h3>
-        <p>Elite intimacy · No power games</p>
-      </div>
-      <div class="choice-card" data-choice="duo">
-        <div class="emoji">👯🔥</div>
-        <h3>Duo (Keysha + Becky)</h3>
-        <p>Layered power · Ultimate darkness</p>
-      </div>
-    </div>
-  </div>
 
-  <!-- MAIN APP (hidden until choice) -->
-  <div id="appContent" class="app-content">
-    <div class="header">
-      <h1 id="profileTitle">BECKY & KEYSHA</h1>
-    </div>
-    <div id="dynamicProfile"></div>
-    <div id="whatsappArea" style="background:#0f0000; border-radius:1.8rem; padding:1.2rem; margin-top:2rem; border:1px solid #660000;">
-      <div class="message-preview" style="background:#050000; padding:0.8rem; border-radius:1rem; white-space:pre-wrap; font-size:0.8rem; margin-bottom:0.8rem; font-family: monospace; color:#ffcccc;" id="messagePreview">Select a package and add-ons – your order will appear here.</div>
-      <button class="btn-whatsapp" id="whatsappBtn">📲 Send on WhatsApp</button>
-      <button class="btn-copy" id="copyBtn">📋 Copy Message</button>
-      <div class="warning">⚡ Age 18+ only. No illegal content. Payment upfront. WhatsApp replies within 12h.</div>
-    </div>
+<div class="age-gate" id="age-gate">
+  <div class="age-gate-box">
+    <h2>Age Verification Required</h2>
+    <p>You must be <strong>18 years or older</strong> to enter.</p>
+    <button class="btn" id="age-confirm">I am 18 or older</button>
+    <button class="btn btn-outline" id="age-deny" style="margin-top:1rem">Exit</button>
   </div>
 </div>
-<div id="toast" class="toast-msg">✓ Copied!</div>
+
+<header>
+  <h1>HOUSE OF KEYSHA</h1>
+  <p class="subhead">Dubai's Most Exclusive BDSM Dominion</p>
+</header>
+
+<div class="nav-wrapper">
+  <div class="nav-inner">
+    <span class="nav-brand" style="color:var(--gold);">⚜️ HoK</span>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="mistress-keysha.html">Mistress Keysha</a>
+      <a href="becky.html">Becky</a>
+      <a href="ceo.html">CEO</a>
+      <a href="therapy.html">Therapy</a>
+      <a href="academy.html">Academy</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="booking.html" style="border-color:var(--crimson);color:var(--crimson);">Book</a>
+    </nav>
+  </div>
+</div>
+
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-content">
+      <h2>Welcome to the Empire</h2>
+      <p>Dubai's private dominion. Mistress Keysha leads. You surrender.</p>
+      <div class="hero-buttons">
+        <a href="mistress-keysha.html" class="btn">Meet Mistress Keysha</a>
+        <a href="becky.html" class="btn btn-outline">Meet Becky</a>
+        <a href="booking.html" class="btn btn-outline">Book Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="overview">
+  <div class="container">
+    <h2 class="section-title" style="color:var(--gold);">The Empire</h2>
+    <div class="persona-card" style="border-left:4px solid var(--crimson);">
+      <div class="persona-avatar keysha-avatar">K</div>
+      <div class="persona-info">
+        <h3 style="color:var(--crimson);">MISTRESS KEYSHA</h3>
+        <div class="tagline">The Sadistic Ebony Goddess</div>
+        <p>Absolute ruler. CEOs kneel. Warriors break. Available as Cruel Goddess or Sweet Fun GFE.</p>
+        <a href="mistress-keysha.html" class="btn" style="margin-top:1rem;">Explore Services</a>
+      </div>
+    </div>
+
+    <div class="persona-card" style="border-left:4px solid #ff69b4;">
+      <div class="persona-avatar becky-avatar">B</div>
+      <div class="persona-info">
+        <h3 style="color:#ff69b4;">BECKY</h3>
+        <div class="tagline">The Porn Princess</div>
+        <p>Your perfect broken doll. Collar her. Use her. Own her completely.</p>
+        <a href="becky.html" class="btn" style="margin-top:1rem;">Explore Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a href="https://wa.me/971567620449" target="_blank" class="whatsapp-float">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
 <script>
-  // ------------------------- DATA -------------------------
-  const PACKAGES = {
-    mistress: [
-      { id: "kneel", name: "🖤 KNEEL, INSECT", price: 1800, desc: "First contact with true Domme energy.", scenarios: ["Kneel and beg for mercy", "You will address me as Queen", "Confess your filthy worship", "Hands behind back, eyes down"] },
-      { id: "financial", name: "⛓️ FINANCIAL LEASH", price: 2500, desc: "Findom / devotion", scenarios: ["Wallet draining ritual", "Tribute required before session", "Send proof of servitude", "Reimbursement games"] },
-      { id: "cruel", name: "🔪 CRUEL QUEEN", price: 3200, desc: "Full sadistic experience", scenarios: ["Whip and wax", "Predicament bondage", "Beg for each strike", "Total humiliation"] }
-    ],
-    becky: [
-      { id: "puppet", name: "🧸 PUPPET TRAINING", price: 900, desc: "First obedience", scenarios: ["Collar & leash, obey like a dog", "Face slapping practice", "Cum hungry begging", "Verbal degradation: 'slut'"] },
-      { id: "dumpster", name: "💦 CUM DUMPSTER", price: 1400, desc: "Extreme slut service", scenarios: ["Deep throat drills", "Facial worship", "Spit & sweat", "You own my holes"] },
-      { id: "broken", name: "🔗 BROKEN DOLL", price: 1900, desc: "Full degradation", scenarios: ["Human ashtray", "Bondage & gag", "Forced orgasm denial", "Pony play"] }
-    ],
-    gfe: [
-      { id: "golden", name: "🍷 GOLDEN HOUR", price: 2500, desc: "3h luxury dinner date", scenarios: ["Wine tasting & deep talk", "Hand holding & sensual kissing", "Emotional intimacy", "Elegant lingerie under dress"] },
-      { id: "muse", name: "🌹 THE SPOILED MUSE", price: 4500, desc: "Half day (6h)", scenarios: ["Art gallery & shopping", "Rooftop bar", "GFE+ authentic", "Luxury outcall"] }
-    ],
-    duo: [
-      { id: "doublecmd", name: "👑 DOUBLE COMMAND", price: 4500, desc: "Keysha commands Becky, you watch", scenarios: ["You watch Keysha break Becky", "Becky serves both", "Power exchange layered"] },
-      { id: "ownboth", name: "🔗 OWN THEM BOTH", price: 5500, desc: "You own Becky, Keysha owns you", scenarios: ["You control Becky, Keysha controls you", "Psychological edge", "Total surrender"] }
-    ]
-  };
-
-  const ADDONS = [
-    { id: "outfit", name: "👗 Specific outfit", price: 150 },
-    { id: "sayname", name: "🗣️ Says your name", price: 100 },
-    { id: "script", name: "📜 You write script", price: 200 },
-    { id: "rush", name: "⚡ Rush 24h delivery (video only)", price: 200 },
-    { id: "extratime", name: "⏱️ Extra 15 min session", price: 250 }
-  ];
-
-  const PHONE_BECKY = "971547783323";
-  const PHONE_KEYSHA = "971501234567";
-
-  let currentChoice = null;
-  let selectedPackageId = null;
-  let selectedScenario = "";
-  let selectedAddons = {};
-  let packagePrice = 0;
-  let totalPrice = 0;
-
-  function getCurrentPackages() {
-    return PACKAGES[currentChoice] || [];
+(function() {
+  function lsGet(k,f){try{const v=localStorage.getItem('hok_'+k);return v!==null?JSON.parse(v):f;}catch(e){return f;}}
+  function lsSet(k,v){try{localStorage.setItem('hok_'+k,JSON.stringify(v));}catch(e){}}
+  if(!lsGet('age_verified',false)){
+    document.getElementById('age-gate').classList.add('visible');
+    document.getElementById('age-confirm').addEventListener('click',()=>{lsSet('age_verified',true);document.getElementById('age-gate').classList.remove('visible');});
+    document.getElementById('age-deny').addEventListener('click',()=>{window.location.href='about:blank';});
   }
-
-  function getSelectedPackage() {
-    return getCurrentPackages().find(p => p.id === selectedPackageId) || null;
-  }
-
-  function computeTotal() {
-    let total = packagePrice;
-    for (let [id, active] of Object.entries(selectedAddons)) {
-      if (active) {
-        const addon = ADDONS.find(a => a.id === id);
-        if (addon) total += addon.price;
-      }
-    }
-    totalPrice = total;
-    return total;
-  }
-
-  function buildWhatsAppMessage() {
-    if (!selectedPackageId) return "Please select a package first.";
-    const pkg = getSelectedPackage();
-    if (!pkg) return "Package not found.";
-    let msg = `*${currentChoice.toUpperCase()} BOOKING REQUEST*\n`;
-    msg += `📦 Package: ${pkg.name}\n💰 Base: ${pkg.price} AED\n`;
-    if (selectedScenario) {
-      msg += `🎭 Scenario: ${selectedScenario}\n`;
-    }
-    let addonsList = Object.entries(selectedAddons).filter(([,active]) => active).map(([id]) => {
-      const a = ADDONS.find(ad => ad.id === id);
-      return a ? `${a.name} (+${a.price} AED)` : id;
-    }).join(", ");
-    if (addonsList) msg += `✨ Add-ons: ${addonsList}\n`;
-    msg += `💎 TOTAL: ${totalPrice} AED\n`;
-    msg += `📝 Ready to confirm payment & schedule. Age 18+ verified.\n— Sent via Dark Menu`;
-    return msg;
-  }
-
-  function updatePreview() {
-    const msg = buildWhatsAppMessage();
-    const previewEl = document.getElementById("messagePreview");
-    if (previewEl) previewEl.innerText = msg;
-    window._pendingMessage = msg;
-  }
-
-  function renderProfileAndPackages() {
-    const container = document.getElementById("dynamicProfile");
-    if (!container) return;
-    const titleMap = { mistress:"MISTRESS KEYSHA – RED DOMINION", becky:"BECKY – PUPPET / CUM SLUT", gfe:"LUXURY GFE COMPANION", duo:"DUO (KEYSHA + BECKY)" };
-    document.getElementById("profileTitle").innerText = titleMap[currentChoice] || "SURRENDER";
-
-    let bgImageHtml = "";
-    if (currentChoice === "becky") {
-      bgImageHtml = `<div class="bg-image" style="background-image: url('https://i.postimg.cc/gallery/RHBxgvP/becky-bg.jpg'); background-size: cover; opacity: 0.3;"></div>`;
-    } else if (currentChoice === "mistress") {
-      bgImageHtml = `<div class="bg-image" style="background-image: url('https://i.postimg.cc/gallery/RHBxgvP/keysha-bg.jpg'); background-size: cover; opacity: 0.25;"></div>`;
-    }
-
-    let packagesHtml = `<div class="profile-banner"><div style="position:relative;">${bgImageHtml}<div class="profile-info"><h2>${titleMap[currentChoice]}</h2></div></div></div>`;
-    packagesHtml += `<div class="cards-grid" id="packagesGrid">`;
-
-    getCurrentPackages().forEach(p => {
-      const isSelected = (selectedPackageId === p.id);
-      packagesHtml += `
-        <div class="package-card ${isSelected ? 'selected-card' : ''}" data-pkg-id="${p.id}">
-          <div class="package-title">${p.name}</div>
-          <div class="package-price">${p.price} AED</div>
-          <div class="package-desc">${p.desc}</div>
-        </div>
-      `;
-    });
-    packagesHtml += `</div>`;
-
-    let scenarioHtml = "";
-    if (selectedPackageId) {
-      const pkg = getSelectedPackage();
-      if (pkg && pkg.scenarios && pkg.scenarios.length > 0) {
-        scenarioHtml = `<div class="scenario-box"><strong>🎭 Select scenario (matches package):</strong><div class="scenario-buttons" id="scenarioButtons">`;
-        pkg.scenarios.forEach(sc => {
-          const activeClass = (selectedScenario === sc) ? "selected-scenario" : "";
-          const safeSc = sc.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-          scenarioHtml += `<button class="scenario-btn ${activeClass}" data-scenario="${safeSc}">${sc.substring(0, 38)}</button>`;
-        });
-        scenarioHtml += `</div></div>`;
-      } else {
-        scenarioHtml = `<div class="scenario-box">✨ Custom scenario via WhatsApp after booking.</div>`;
-      }
-    } else {
-      scenarioHtml = `<div class="warning">🔴 Click any package above to select it, then choose scenario & add-ons.</div>`;
-    }
-
-    let addonsHtml = `<div class="addons-group"><strong>✨ ADD-ONS (price adds to total)</strong><div id="addonsList">`;
-    ADDONS.forEach(add => {
-      const isActive = selectedAddons[add.id] || false;
-      addonsHtml += `<div class="addon-item"><span>${add.name} +${add.price} AED</span><span class="addon-toggle ${isActive ? 'active' : ''}" data-addon-id="${add.id}">${isActive ? '✓ Added' : '+ Add'}</span></div>`;
-    });
-    addonsHtml += `</div></div>`;
-
-    computeTotal();
-    const totalHtml = `<div style="margin:1rem 0;"><span class="total-price" id="liveTotalPrice">${totalPrice} AED</span></div>`;
-
-    container.innerHTML = packagesHtml + scenarioHtml + addonsHtml + totalHtml;
-
-    document.querySelectorAll('.package-card').forEach(card => {
-      card.addEventListener('click', (e) => {
-        const pkgId = card.dataset.pkgId;
-        if (!pkgId) return;
-        selectedPackageId = pkgId;
-        const pkg = getSelectedPackage();
-        packagePrice = pkg ? pkg.price : 0;
-        selectedScenario = "";
-        selectedAddons = {};
-        computeTotal();
-        renderProfileAndPackages();
-        updatePreview();
-      });
-    });
-
-    const scenarioContainer = document.getElementById("scenarioButtons");
-    if (scenarioContainer) {
-      scenarioContainer.querySelectorAll('.scenario-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          selectedScenario = btn.getAttribute('data-scenario') || "";
-          renderProfileAndPackages();
-          updatePreview();
-        });
-      });
-    }
-
-    document.querySelectorAll('.addon-toggle').forEach(toggle => {
-      toggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const addonId = toggle.dataset.addonId;
-        if (!addonId) return;
-        selectedAddons[addonId] = !selectedAddons[addonId];
-        computeTotal();
-        renderProfileAndPackages();
-        updatePreview();
-      });
-    });
-  }
-
-  function sendWhatsApp() {
-    if (!window._pendingMessage || !selectedPackageId) {
-      alert("❌ Please select a package and configure your order first.");
-      return;
-    }
-    let phone = (currentChoice === "mistress" || currentChoice === "duo") ? PHONE_KEYSHA : PHONE_BECKY;
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(window._pendingMessage)}`;
-    window.open(url, '_blank');
-  }
-
-  function copyMessage() {
-    if (!window._pendingMessage) {
-      alert("No message generated yet.");
-      return;
-    }
-    navigator.clipboard.writeText(window._pendingMessage).then(() => {
-      const toast = document.getElementById('toast');
-      toast.style.display = 'block';
-      setTimeout(() => toast.style.display = 'none', 1500);
-    }).catch(() => alert("Unable to copy"));
-  }
-
-  function initApp(choice) {
-    currentChoice = choice;
-    selectedPackageId = null;
-    selectedScenario = "";
-    selectedAddons = {};
-    packagePrice = 0;
-    totalPrice = 0;
-    document.getElementById("landingScreen").style.display = "none";
-    document.getElementById("appContent").style.display = "block";
-    renderProfileAndPackages();
-    updatePreview();
-  }
-
-  document.querySelectorAll('.choice-card').forEach(card => {
-    card.addEventListener('click', (e) => {
-      const choice = card.dataset.choice;
-      if (choice) initApp(choice);
-    });
-  });
-
-  document.getElementById("whatsappBtn")?.addEventListener('click', sendWhatsApp);
-  document.getElementById("copyBtn")?.addEventListener('click', copyMessage);
-  window.updatePreview = updatePreview;
+})();
 </script>
 </body>
 </html>
-```
