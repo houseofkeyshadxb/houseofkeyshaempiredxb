@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Becky - The Porn Princess | House of Keysha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0B0B0B;
+            --black-light: #141414;
+            --black-lighter: #1A1A1A;
+            --pure-black: #0a0a0a;
+            --card-bg: #12121a;
+            --crimson: #dc143c;
+            --crimson-alt: #8B3A3A;
+            --crimson-light: #A84444;
+            --oxblood: #6a1a1a;
+            --gold: #C6A962;
+            --gold-hover: #D4AF37;
+            --gold-light: #F5E6CC;
+            --white: #F5F5F5;
+            --muted: #A0A0A0;
+            --border: #2A2A2A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(11, 11, 11, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(198, 169, 98, 0.3);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        nav .cta-btn {
+            background: var(--crimson);
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            color: var(--white);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        nav .cta-btn:hover {
+            background: var(--crimson-light);
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--crimson);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--crimson-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .hero {
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--crimson);
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero-tagline {
+            font-size: 1.1rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+        }
+
+        section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .package-card {
+            background: var(--black-light);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .package-card:hover {
+            border-color: var(--crimson);
+            transform: translateY(-4px);
+        }
+
+        .package-card.featured {
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(198, 169, 98, 0.2);
+        }
+
+        .package-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+        }
+
+        .package-card .price {
+            font-size: 2rem;
+            color: var(--crimson);
+            margin: 1rem 0;
+            font-weight: 700;
+        }
+
+        .package-card .duration {
+            color: var(--muted);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .package-card p {
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .package-card ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .package-card ul li {
+            padding: 0.5rem 0;
+            color: var(--white);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .package-card ul li:before {
+            content: "✓ ";
+            color: var(--crimson);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        footer {
+            background: var(--pure-black);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        footer .location {
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        footer .confidential {
+            color: var(--crimson);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        footer .signoff {
+            color: var(--gold);
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        footer .legal {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        footer .legal a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        footer .legal a:hover {
+            color: var(--white);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .age-gate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 11, 11, 0.98);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .age-gate-content {
+            background: var(--black-light);
+            border: 2px solid var(--crimson);
+            padding: 3rem;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .age-gate h2 {
+            color: var(--crimson);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .age-gate p {
+            margin-bottom: 2rem;
+            color: var(--muted);
+        }
+
+        .age-gate-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="ageGate" class="age-gate">
+        <div class="age-gate-content">
+            <h2>18+ Only</h2>
+            <p>This website contains adult content. You must be 18 years or older to enter.</p>
+            <div class="age-gate-buttons">
+                <button class="btn btn-primary" onclick="enterSite()">I am 18+</button>
+                <button class="btn btn-secondary" onclick="window.location.href='https://google.com'">Exit</button>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <div class="container">
+            <div class="logo">House of Keysha</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="mistress-keysha.html">Mistress Keysha</a></li>
+                <li><a href="becky.html">Becky</a></li>
+                <li><a href="ceo.html">CEO Discipline</a></li>
+                <li><a href="therapy.html">Therapy</a></li>
+                <li><a href="academy.html">Academy</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="booking.html" class="cta-btn">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero" style="background: linear-gradient(rgba(11, 11, 11, 0.7), rgba(11, 11, 11, 0.85)), url('images/portraits/cum-slut-becky-hero.jpg') center/cover;">
+        <div class="hero-content">
+            <h1>Becky</h1>
+            <div class="hero-subtitle">The Porn Princess / The Puppet</div>
+            <p class="hero-tagline">"You've seen me on screen. Now imagine me right here, looking up at you..."</p>
+            <a href="booking.html" class="btn btn-primary">Book a Session</a>
+        </div>
+    </div>
+
+    <section>
+        <div class="section-header">
+            <h2>Submission Sessions</h2>
+            <p>Adult Star. Trophy. Tease & Denial Specialist. Your perfect puppet.</p>
+        </div>
+
+        <div class="packages-grid">
+            <div class="package-card">
+                <h3>Puppet Training</h3>
+                <div class="price">900 AED</div>
+                <div class="duration">1 hour</div>
+                <p>Your first taste of owning something that breathes only for you.</p>
+                <ul>
+                    <li>Collar & leash - obey like a dog</li>
+                    <li>Face slapping practice</li>
+                    <li>Cum hungry begging</li>
+                    <li>Verbal degradation: called 'slut'</li>
+                </ul>
+                <a href="booking.html" class="btn btn-primary">Book Now</a>
+            </div>
+
+            <div class="package-card featured">
+                <h3>Cum Dumpster</h3>
+                <div class="price">1,400 AED</div>
+                <div class="duration">1 hour</div>
+                <p>Complete degradation. She becomes whatever you need to use.</p>
+                <ul>
+                    <li>Deep throat drills</li>
+                    <li>Facial worship</li>
+                    <li>Spit & sweat</li>
+                    <li>You own my holes</li>
+                </ul>
+                <a href="booking.html" class="btn btn-primary">Book Now</a>
+            </div>
+
+            <div class="package-card">
+                <h3>Broken Doll</h3>
+                <div class="price">1,900 AED</div>
+                <div class="duration">1 hour</div>
+                <p>The ultimate. She is nothing. You are everything.</p>
+                <ul>
+                    <li>Human ashtray</li>
+                    <li>Bondage & gag</li>
+                    <li>Forced orgasm denial</li>
+                    <li>Pony play</li>
+                </ul>
+                <a href="booking.html" class="btn btn-primary">Book Now</a>
+            </div>
+
+            <div class="package-card">
+                <h3>The Tease Hour</h3>
+                <div class="price">1,500 AED</div>
+                <div class="duration">1 hour</div>
+                <p>Expert tease and denial. Edge play specialist.</p>
+                <a href="booking.html" class="btn btn-primary">Book Now</a>
+            </div>
+
+            <div class="package-card">
+                <h3>Edging & Denial</h3>
+                <div class="price">2,200 AED</div>
+                <div class="duration">1.5 hours</div>
+                <p>Extended edging session. Push your limits.</p>
+                <a href="booking.html" class="btn btn-primary">Book Now</a>
+            </div>
+
+            <div class="package-card featured">
+                <h3>Porn Star Experience</h3>
+                <div class="price">3,000 AED</div>
+                <div class="duration">2 hours</div>
+                <p>The full adult star experience. Your wildest fantasy.</p>
+                <a href="booking.html" class="btn btn-primary">Book Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: var(--black-lighter);">
+        <div class="section-header">
+            <h2>Duo Sessions - Keysha + Becky</h2>
+            <p>Layered power exchange. The ultimate darkness.</p>
+        </div>
+
+        <div class="packages-grid">
+            <div class="package-card featured">
+                <h3>Double Command</h3>
+                <div class="price">4,500 AED</div>
+                <div class="duration">1 hour</div>
+                <p>Keysha commands Becky. You watch - or participate.</p>
+                <ul>
+                    <li>Watch Keysha break Becky</li>
+                    <li>Becky serves both</li>
+                    <li>Power exchange layered</li>
+                </ul>
+                <a href="booking.html" class="btn btn-primary">Book Now</a>
+            </div>
+
+            <div class="package-card">
+                <h3>Own Them Both</h3>
+                <div class="price">5,500 AED</div>
+                <div class="duration">1 hour</div>
+                <p>You own Becky. Keysha owns you. Total surrender.</p>
+                <ul>
+                    <li>You control Becky</li>
+                    <li>Keysha controls you</li>
+                    <li>Psychological edge</li>
+                </ul>
+                <a href="booking.html" class="btn btn-primary">Book Now</a>
+            </div>
+
+            <div class="package-card">
+                <h3>Watch Me Train Her</h3>
+                <div class="price">3,000 AED</div>
+                <div class="duration">1 hour</div>
+                <p>Pure voyeurism. Keysha breaks Becky. You witness.</p>
+                <ul>
+                    <li>Observation only</li>
+                    <li>Full BDSM training display</li>
+                    <li>Psychological intensity</li>
+                </ul>
+                <a href="booking.html" class="btn btn-primary">Book Now</a>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="brand">House of Keysha</div>
+        <div class="location">Dubai, UAE</div>
+        <div class="confidential">All sessions 100% confidential</div>
+        <div class="signoff">Where power meets perfection</div>
+        <div class="legal">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">18+ Only</a>
+            <a href="admin/dashboard.html">Admin</a>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/971567620449" class="whatsapp-float" target="_blank">💬</a>
+
+    <script>
+        function enterSite() {
+            localStorage.setItem('ageVerified', 'true');
+            document.getElementById('ageGate').classList.add('hidden');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('ageVerified') === 'true') {
+                document.getElementById('ageGate').classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

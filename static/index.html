@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>House of Keysha — Dubai Luxury Companion & BDSM Services</title>
+  <meta name="description" content="Dubai's most exclusive private dominion. Mistress Keysha & Becky offer bespoke domination, therapy, and companion experiences with absolute discretion." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&family=Space+Mono&display=swap" rel="stylesheet" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --crimson: #dc143c; --gold: #C6A962; --pureblack: #0B0B0B; --cardbg: #141414;
+      --radius: 20px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--pureblack); color: #e0e0e0;
+      font-family: 'Space Mono', monospace; line-height: 1.6;
+    }
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; font-weight: 700; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .section-title {
+      font-size: 2.8rem; text-align: center; margin-bottom: 2.5rem; text-transform: uppercase;
+      letter-spacing: 4px; position: relative;
+    }
+    .section-title::after { content:''; display:block; width:80px; height:2px; background:var(--gold); margin:0.75rem auto 0; }
+    .btn {
+      display:inline-block; background:var(--gold); color:#000; font-weight:bold; padding:0.9rem 2.2rem;
+      border:none; border-radius:30px; cursor:pointer; font-family:'Space Mono',monospace; font-size:1rem;
+      transition:all 0.3s; text-decoration:none;
+    }
+    .btn:hover { background:#fff; box-shadow:0 0 30px var(--gold); transform:scale(1.02); }
+    .btn-outline { background:transparent; border:2px solid var(--gold); color:var(--gold); }
+    .btn-outline:hover { background:var(--gold); color:#000; }
+    header {
+      background:linear-gradient(180deg,#0a0a0a 0%,#1e1e2f 100%); padding:2.5rem 1rem 1.8rem;
+      text-align:center; border-bottom:2px solid var(--gold);
+    }
+    header h1 { font-size:3.6rem; color:var(--gold); letter-spacing:6px; animation:pulse-glow 4s ease-in-out infinite; }
+    @keyframes pulse-glow { 0%,100%{text-shadow:0 0 20px var(--crimson);} 50%{text-shadow:0 0 30px var(--crimson);} }
+    header .subhead { color:#bbb; font-size:1.15rem; margin-top:0.5rem; letter-spacing:2px; }
+    .nav-wrapper { position:sticky; top:0; z-index:100; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); border-bottom:1px solid rgba(240,192,64,0.15); }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto; padding:0.4rem 1.5rem; flex-wrap:wrap; }
+    nav { display:flex; flex-wrap:wrap; gap:0.4rem 0.8rem; }
+    nav a { color:#ddd; text-decoration:none; font-weight:bold; padding:0.4rem 1rem; border-radius:30px; background:rgba(255,255,255,0.04); transition:all 0.3s; font-size:0.8rem; }
+    nav a:hover { border-color:var(--gold); color:var(--gold); box-shadow:0 0 16px var(--gold); }
+    section { padding:4.5rem 0; }
+    .hero-section { min-height:70vh; display:flex; align-items:center; justify-content:center; text-align:center; }
+    .hero-content h2 { font-size:3rem; color:var(--gold); margin-bottom:1rem; }
+    .hero-content p { font-size:1.2rem; color:#bbb; margin-bottom:2rem; max-width:600px; margin-left:auto; margin-right:auto; }
+    .hero-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+    .persona-card { display:flex; flex-wrap:wrap; gap:2rem; background:var(--cardbg); padding:2.2rem; border-radius:var(--radius); margin-bottom:2rem; }
+    .persona-avatar { width:140px; height:140px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:3.8rem; flex-shrink:0; }
+    .keysha-avatar { background:#2a0000; color:var(--crimson); box-shadow:0 0 40px var(--crimson); }
+    .becky-avatar { background:#2a002a; color:#ff69b4; box-shadow:0 0 40px #ff69b4; }
+    .persona-info { flex:1; }
+    .persona-info h3 { font-size:2.2rem; margin-bottom:0.3rem; }
+    .tagline { font-style:italic; color:#aaa; margin-bottom:1rem; font-size:0.95rem; }
+    .age-gate { position:fixed; inset:0; background:rgba(0,0,0,0.97); z-index:9999; display:none; align-items:center; justify-content:center; }
+    .age-gate.visible { display:flex; }
+    .age-gate-box { max-width:460px; border:1px solid var(--gold); border-radius:var(--radius); padding:3rem 2.5rem; background:#111; text-align:center; }
+    .age-gate-box h2 { color:var(--gold); margin-bottom:1rem; }
+    .age-gate-box p { opacity:0.8; margin-bottom:2rem; }
+    .whatsapp-float { position:fixed; bottom:30px; right:30px; width:60px; height:60px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:998; box-shadow:0 8px 30px rgba(37,211,102,0.4); animation:pulse-wa 3s infinite; text-decoration:none; }
+    @keyframes pulse-wa { 0%,100%{box-shadow:0 8px 30px rgba(37,211,102,0.4);} 50%{box-shadow:0 8px 50px rgba(37,211,102,0.7);} }
+    .whatsapp-float svg { width:30px; height:30px; fill:#fff; }
+  </style>
+</head>
+<body>
+
+<div class="age-gate" id="age-gate">
+  <div class="age-gate-box">
+    <h2>Age Verification Required</h2>
+    <p>You must be <strong>18 years or older</strong> to enter.</p>
+    <button class="btn" id="age-confirm">I am 18 or older</button>
+    <button class="btn btn-outline" id="age-deny" style="margin-top:1rem">Exit</button>
+  </div>
+</div>
+
+<header>
+  <h1>HOUSE OF KEYSHA</h1>
+  <p class="subhead">Dubai's Most Exclusive BDSM Dominion</p>
+</header>
+
+<div class="nav-wrapper">
+  <div class="nav-inner">
+    <span class="nav-brand" style="color:var(--gold);">⚜️ HoK</span>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="mistress-keysha.html">Mistress Keysha</a>
+      <a href="becky.html">Becky</a>
+      <a href="ceo.html">CEO</a>
+      <a href="therapy.html">Therapy</a>
+      <a href="academy.html">Academy</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="booking.html" style="border-color:var(--crimson);color:var(--crimson);">Book</a>
+    </nav>
+  </div>
+</div>
+
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-content">
+      <h2>Welcome to the Empire</h2>
+      <p>Dubai's private dominion. Mistress Keysha leads. You surrender.</p>
+      <div class="hero-buttons">
+        <a href="mistress-keysha.html" class="btn">Meet Mistress Keysha</a>
+        <a href="becky.html" class="btn btn-outline">Meet Becky</a>
+        <a href="booking.html" class="btn btn-outline">Book Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="overview">
+  <div class="container">
+    <h2 class="section-title" style="color:var(--gold);">The Empire</h2>
+    <div class="persona-card" style="border-left:4px solid var(--crimson);">
+      <div class="persona-avatar keysha-avatar">K</div>
+      <div class="persona-info">
+        <h3 style="color:var(--crimson);">MISTRESS KEYSHA</h3>
+        <div class="tagline">The Sadistic Ebony Goddess</div>
+        <p>Absolute ruler. CEOs kneel. Warriors break. Available as Cruel Goddess or Sweet Fun GFE.</p>
+        <a href="mistress-keysha.html" class="btn" style="margin-top:1rem;">Explore Services</a>
+      </div>
+    </div>
+
+    <div class="persona-card" style="border-left:4px solid #ff69b4;">
+      <div class="persona-avatar becky-avatar">B</div>
+      <div class="persona-info">
+        <h3 style="color:#ff69b4;">BECKY</h3>
+        <div class="tagline">The Porn Princess</div>
+        <p>Your perfect broken doll. Collar her. Use her. Own her completely.</p>
+        <a href="becky.html" class="btn" style="margin-top:1rem;">Explore Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a href="https://wa.me/971567620449" target="_blank" class="whatsapp-float">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+(function() {
+  function lsGet(k,f){try{const v=localStorage.getItem('hok_'+k);return v!==null?JSON.parse(v):f;}catch(e){return f;}}
+  function lsSet(k,v){try{localStorage.setItem('hok_'+k,JSON.stringify(v));}catch(e){}}
+  if(!lsGet('age_verified',false)){
+    document.getElementById('age-gate').classList.add('visible');
+    document.getElementById('age-confirm').addEventListener('click',()=>{lsSet('age_verified',true);document.getElementById('age-gate').classList.remove('visible');});
+    document.getElementById('age-deny').addEventListener('click',()=>{window.location.href='about:blank';});
+  }
+})();
+</script>
+</body>
+</html>

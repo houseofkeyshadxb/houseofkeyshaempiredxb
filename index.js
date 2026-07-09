@@ -11,8 +11,11 @@ const app = express();
 app.use(express.json());
 
 // Serve static files
-app.use(express.static('.'));
+app.use(express.static('static'));
 app.use('/images', express.static('images'));
+app.use('/css', express.static('css'));
+app.use('/js', express.static('js'));
+app.use('/videos', express.static('videos'));
 app.use('/quote-builder', express.static('quote-builder'));
 
 // Supabase client
