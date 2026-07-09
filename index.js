@@ -5,6 +5,7 @@ const qrcode = require('qrcode-terminal');
 const { createClient } = require('@supabase/supabase-js');
 const cron = require('node-cron');
 const moment = require('moment-timezone');
+const { GoogleGenerativeAI } = require('@google/genai');
 
 const app = express();
 app.use(express.json());
@@ -12,12 +13,16 @@ app.use(express.json());
 // Serve static files
 app.use(express.static('.'));
 app.use('/images', express.static('images'));
+app.use('/quote-builder', express.static('quote-builder'));
 
 // Supabase client
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_KEY
 );
+
+// Gemini AI client for quote builder
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
 // WhatsApp client with persistent session
 const client = new Client({
@@ -275,6 +280,10 @@ async function storeBookingInquiry(chatId, details) {
 }
 
 // Express routes
+app.get('/quote-builder', (req, res) => {
+  res.sendFile(__dirname + '/quote-builder/index.html');
+});
+
 app.get('/health', (req, res) => {
   res.json({
     status: 'healthy',
@@ -311,6 +320,31 @@ app.post('/send-message', async (req, res) => {
     res.json({ success: true, message: 'Message sent successfully' });
   } catch (error) {
     console.error('Error sending message:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Quote builder API endpoint
+app.post('/api/generate-quote', async (req, res) => {
+  try {
+    const { prompt, model = 'gemini-2.0-flash-exp' } = req.body;
+
+    if (!prompt) {
+      return res.status(400).json({ error: 'Prompt is required' });
+    }
+
+    if (!process.env.GEMINI_API_KEY) {
+      return res.status(500).json({ error: 'GEMINI_API_KEY not configured' });
+    }
+
+    const geminiModel = genAI.getGenerativeModel({ model });
+    const result = await geminiModel.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+
+    res.json({ text });
+  } catch (error) {
+    console.error('Error generating quote:', error);
     res.status(500).json({ error: error.message });
   }
 });
