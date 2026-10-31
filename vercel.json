@@ -1,16 +1,7 @@
 {
   "framework": null,
-  "buildCommand": "exit 0",
+  "buildCommand": "cp static/*.html . && cp -r images .",
   "outputDirectory": ".",
-  "public": "static",
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    {"source": "/services", "destination": "/static/services.html"},
-    {"source": "/testimonials", "destination": "/static/testimonials.html"},
-    {"source": "/faq", "destination": "/static/faq.html"},
-    {"source": "/contact", "destination": "/static/contact.html"},
-    {"source": "/mistress-keysha", "destination": "/static/mistress-keysha.html"},
-    {"source": "/becky", "destination": "/static/becky.html"}
-  ]
+  "cleanUrls": false,
+  "trailingSlash": false
 }

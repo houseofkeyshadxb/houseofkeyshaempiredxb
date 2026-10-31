@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Testimonials — House of Keysha</title>
+  <meta name="description" content="Real testimonials from satisfied clients. Read why our clients return again and again." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --midnight: #0A0E27;
+      --deep-purple: #2D1B4E;
+      --rose-gold: #E8B4B8;
+      --champagne: #F7E7CE;
+      --crimson: #dc143c;
+      --accent: #B565D8;
+      --white: #FFFFFF;
+      --radius: 16px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--midnight);
+      color: var(--champagne);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1,h2,h3,h4 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+    header {
+      background: linear-gradient(135deg, rgba(10,14,39,0.95) 0%, rgba(45,27,78,0.8) 100%);
+      padding: 3rem 1rem 2rem;
+      text-align: center;
+      border-bottom: 2px solid var(--rose-gold);
+      backdrop-filter: blur(10px);
+    }
+    header h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: var(--rose-gold);
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      animation: glow-pulse 4s ease-in-out infinite;
+    }
+    @keyframes glow-pulse {
+      0%, 100% { text-shadow: 0 0 20px rgba(232,180,184,0.5), 0 0 40px rgba(181,101,216,0.3); }
+      50% { text-shadow: 0 0 30px rgba(232,180,184,0.8), 0 0 60px rgba(181,101,216,0.5); }
+    }
+
+    .nav-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 14, 39, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232, 180, 184, 0.1);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.8rem 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .nav-brand { color: var(--rose-gold); font-weight: bold; font-size: 1.2rem; }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    nav a {
+      color: var(--champagne);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1.1rem;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      border: 1px solid transparent;
+    }
+    nav a:hover, nav a.active {
+      background: rgba(232, 180, 184, 0.15);
+      color: var(--rose-gold);
+      border-color: var(--rose-gold);
+      box-shadow: 0 0 20px rgba(232, 180, 184, 0.2);
+    }
+
+    section { padding: 5rem 0; }
+    section:nth-child(even) { background: linear-gradient(135deg, rgba(45,27,78,0.3) 0%, rgba(10,14,39,0.1) 100%); }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--rose-gold);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--rose-gold));
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .testimonial-card {
+      background: linear-gradient(135deg, rgba(45,27,78,0.6) 0%, rgba(10,14,39,0.8) 100%);
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(232, 180, 184, 0.2);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonial-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent, rgba(232, 180, 184, 0.05));
+      pointer-events: none;
+    }
+    .testimonial-card:hover {
+      border-color: var(--rose-gold);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(232, 180, 184, 0.2);
+    }
+
+    .stars {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      position: relative;
+      z-index: 2;
+    }
+    .testimonial-text {
+      font-style: italic;
+      color: var(--champagne);
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+      opacity: 0.95;
+      line-height: 1.8;
+    }
+    .testimonial-author {
+      position: relative;
+      z-index: 2;
+    }
+    .author-name {
+      font-weight: 600;
+      color: var(--rose-gold);
+      margin-bottom: 0.25rem;
+    }
+    .author-role {
+      font-size: 0.9rem;
+      color: var(--accent);
+      opacity: 0.8;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+      text-align: center;
+    }
+    .stat-box {
+      background: linear-gradient(135deg, rgba(45,27,78,0.4) 0%, rgba(10,14,39,0.6) 100%);
+      padding: 2rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(232, 180, 184, 0.2);
+    }
+    .stat-number {
+      font-size: 2.5rem;
+      color: var(--rose-gold);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      color: var(--champagne);
+      opacity: 0.9;
+    }
+
+    footer {
+      background: rgba(10, 14, 39, 0.9);
+      border-top: 1px solid rgba(232, 180, 184, 0.1);
+      padding: 3rem 1rem;
+      text-align: center;
+      color: var(--champagne);
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 2rem 1rem 1.5rem; }
+      .nav-inner { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Testimonials</h1>
+</header>
+
+<div class="nav-wrapper">
+  <div class="nav-inner">
+    <span class="nav-brand">⚜️ HoK</span>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="mistress-keysha.html">Mistress Keysha</a>
+      <a href="becky.html">Becky</a>
+      <a href="services.html">Services</a>
+      <a href="testimonials.html" class="active">Testimonials</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<section id="stats">
+  <div class="container">
+    <h2 class="section-title">Our Track Record</h2>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">Satisfied Clients</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">98%</div>
+        <div class="stat-label">Return Rate</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">7+ Years</div>
+        <div class="stat-label">Professional Experience</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Availability</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="container">
+    <h2 class="section-title">What Clients Say</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial-text">
+          "Mistress Keysha is exactly what I've been looking for. Professional, discrete, and incredibly skilled. The experience was absolutely unforgettable. Highly recommended!"
+        </p>
+        <div class="testimonial-author">
+          <div class="author-name">Ahmed M.</div>
+          <div class="author-role">Dubai Business Executive</div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial-text">
+          "Becky was amazing! Such an engaging personality and incredibly attentive. The girlfriend experience was so genuine and intimate. I'm already booking my next session!"
+        </p>
+        <div class="testimonial-author">
+          <div class="author-name">Marcus T.</div>
+          <div class="author-role">International Visitor</div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial-text">
+          "The level of professionalism and discretion is outstanding. They understand consent and boundaries perfectly. Best experience I've had in years. 10/10!"
+        </p>
+        <div class="testimonial-author">
+          <div class="author-name">James L.</div>
+          <div class="author-role">Returning Client</div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial-text">
+          "Mistress Keysha really understands the findom experience. She's demanding, dominant, and absolutely in control. Exactly what I've been seeking. Already booked again!"
+        </p>
+        <div class="testimonial-author">
+          <div class="author-name">Hassan K.</div>
+          <div class="author-role">Devoted Tribute Payer</div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial-text">
+          "The BDSM session was incredible. They're knowledgeable about safety, SSC practices, and really listened to what I wanted. Professional and passionate!"
+        </p>
+        <div class="testimonial-author">
+          <div class="author-name">Daniel R.</div>
+          <div class="author-role">BDSM Enthusiast</div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial-text">
+          "I cannot recommend this service enough. The discretion, the experience, the attention to detail — everything is top-notch. Worth every dirham!"
+        </p>
+        <div class="testimonial-author">
+          <div class="author-name">Michael S.</div>
+          <div class="author-role">Regular Client</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why-trust">
+  <div class="container">
+    <h2 class="section-title">Why Clients Trust Us</h2>
+    <div style="max-width: 700px; margin: 0 auto; text-align: center; color: var(--champagne); line-height: 2; font-size: 1.1rem;">
+      <p>
+        ✓ <strong>Verified Profiles</strong> — Real people, real reviews<br>
+        ✓ <strong>Professional Standards</strong> — Years of industry experience<br>
+        ✓ <strong>Complete Discretion</strong> — Your privacy is our priority<br>
+        ✓ <strong>Safety First</strong> — SSC and FRIES practices<br>
+        ✓ <strong>Punctual & Reliable</strong> — We honor our commitments<br>
+        ✓ <strong>Premium Service</strong> — Nothing but the best
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 House of Keysha. All rights reserved. Discretion guaranteed. | 18+ Only</p>
+</footer>
+
+<script>
+  document.querySelectorAll('nav a').forEach(link => {
+    if (link.href === window.location.href) {
+      link.classList.add('active');
+    }
+  });
+</script>
+</body>
+</html>

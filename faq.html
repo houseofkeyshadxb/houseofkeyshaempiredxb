@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ — House of Keysha</title>
+  <meta name="description" content="Frequently asked questions about our services, booking process, and policies." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --midnight: #0A0E27;
+      --deep-purple: #2D1B4E;
+      --rose-gold: #E8B4B8;
+      --champagne: #F7E7CE;
+      --crimson: #dc143c;
+      --accent: #B565D8;
+      --white: #FFFFFF;
+      --radius: 16px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--midnight);
+      color: var(--champagne);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1,h2,h3,h4 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+    header {
+      background: linear-gradient(135deg, rgba(10,14,39,0.95) 0%, rgba(45,27,78,0.8) 100%);
+      padding: 3rem 1rem 2rem;
+      text-align: center;
+      border-bottom: 2px solid var(--rose-gold);
+      backdrop-filter: blur(10px);
+    }
+    header h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: var(--rose-gold);
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      animation: glow-pulse 4s ease-in-out infinite;
+    }
+    @keyframes glow-pulse {
+      0%, 100% { text-shadow: 0 0 20px rgba(232,180,184,0.5), 0 0 40px rgba(181,101,216,0.3); }
+      50% { text-shadow: 0 0 30px rgba(232,180,184,0.8), 0 0 60px rgba(181,101,216,0.5); }
+    }
+
+    .nav-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 14, 39, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232, 180, 184, 0.1);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.8rem 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .nav-brand { color: var(--rose-gold); font-weight: bold; font-size: 1.2rem; }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    nav a {
+      color: var(--champagne);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1.1rem;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      border: 1px solid transparent;
+    }
+    nav a:hover, nav a.active {
+      background: rgba(232, 180, 184, 0.15);
+      color: var(--rose-gold);
+      border-color: var(--rose-gold);
+      box-shadow: 0 0 20px rgba(232, 180, 184, 0.2);
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--rose-gold);
+      color: var(--midnight);
+      font-weight: 600;
+      padding: 1rem 2.2rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .btn:hover {
+      background: var(--white);
+      box-shadow: 0 15px 40px rgba(232, 180, 184, 0.4);
+      transform: translateY(-2px);
+    }
+
+    section { padding: 5rem 0; }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--rose-gold);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--rose-gold));
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: linear-gradient(135deg, rgba(45,27,78,0.4) 0%, rgba(10,14,39,0.6) 100%);
+      border: 1px solid rgba(232, 180, 184, 0.2);
+      border-radius: var(--radius);
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+    .faq-question:hover {
+      background: rgba(232, 180, 184, 0.1);
+    }
+    .faq-question h3 {
+      color: var(--rose-gold);
+      font-size: 1.1rem;
+      margin: 0;
+      flex: 1;
+    }
+    .faq-toggle {
+      font-size: 1.5rem;
+      color: var(--accent);
+      transition: transform 0.3s ease;
+      margin-left: 1rem;
+    }
+    .faq-item.open .faq-toggle {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: rgba(232, 180, 184, 0.03);
+    }
+    .faq-item.open .faq-answer {
+      max-height: 500px;
+      padding: 1.5rem;
+      border-top: 1px solid rgba(232, 180, 184, 0.1);
+    }
+    .faq-answer p {
+      color: var(--champagne);
+      line-height: 1.8;
+      opacity: 0.95;
+    }
+
+    footer {
+      background: rgba(10, 14, 39, 0.9);
+      border-top: 1px solid rgba(232, 180, 184, 0.1);
+      padding: 3rem 1rem;
+      text-align: center;
+      color: var(--champagne);
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 2rem 1rem 1.5rem; }
+      .nav-inner { flex-direction: column; gap: 1rem; }
+      .faq-question { padding: 1rem; }
+      .faq-question h3 { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Frequently Asked Questions</h1>
+</header>
+
+<div class="nav-wrapper">
+  <div class="nav-inner">
+    <span class="nav-brand">⚜️ HoK</span>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="mistress-keysha.html">Mistress Keysha</a>
+      <a href="becky.html">Becky</a>
+      <a href="services.html">Services</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="faq.html" class="active">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<section id="faqs">
+  <div class="container">
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>How do I book a session?</h3>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>Simply click the "Contact" link at the top of the page or send us a WhatsApp message. Provide your preferred date, time, and service. We'll confirm availability and discuss details. A booking deposit secures your session.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>What payment methods do you accept?</h3>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>We accept multiple payment methods including bank transfer, cash on arrival, and digital payment platforms. A deposit (typically 30-50% of session price) is required to confirm your booking. The balance is due on the day of service.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Is everything completely confidential?</h3>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>Absolutely. Discretion is our top priority. Your identity, booking details, and session information are completely confidential. We maintain strict privacy protocols and never share client information.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>What happens during the session?</h3>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>The session is tailored to your preferences. During initial contact, we discuss boundaries, desires, and limitations. All sessions follow SSC (Safe, Sane, Consensual) principles. Communication and consent are paramount.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Can I request a specific person?</h3>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes! You can request either Mistress Keysha or Becky. During booking, let us know your preference. If your preferred person isn't available, we can recommend the other or discuss available times.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Are same-day bookings possible?</h3>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>Sometimes! We try to accommodate same-day requests when possible, though advance notice (24-48 hours) is preferred. Check availability or send a message to see if we can fit you in.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>What if I'm new to BDSM/Findom?</h3>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>Perfect! We welcome newcomers. During our initial consultation, we'll discuss your interests, boundaries, and comfort level. We'll create an experience that's perfect for your experience level. Experienced communication ensures everyone's having fun.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Can I request a custom fantasy/scenario?</h3>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>Absolutely! Custom scenarios and fantasies are our specialty. Whether it's role play, specific domination styles, or unique requests, share your vision. We'll work together to create an unforgettable experience.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Is there a cancellation policy?</h3>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes. Cancellations with 48+ hours notice receive a full refund minus a small administrative fee. Cancellations with less than 48 hours notice forfeit the deposit. No-shows forfeit all payments. Please contact us as soon as possible if you need to reschedule.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Can you travel or arrange outcalls?</h3>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes! We offer both in-call (at our private location) and out-call (hotel or your location) sessions. Out-call sessions require advance booking and incur a travel fee depending on location. Inquire for details.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>What areas of Dubai do you serve?</h3>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>We primarily serve Dubai and the surrounding Emirates. For out-calls, we can travel to hotels, private residences, and other locations within Dubai. Additional travel fees apply for locations outside Dubai.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>How do I know you're legitimate?</h3>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>Great question! We have verified profiles, extensive client testimonials, and years of professional experience. Our clients return regularly and leave positive reviews. We maintain strict professional standards and can provide references.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>What's your cancellation policy if you need to reschedule?</h3>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>If we need to cancel or reschedule, we'll notify you as soon as possible and offer alternative dates or a full refund. Your satisfaction and convenience are important to us.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 4rem;">
+      <h3 style="color: var(--rose-gold); margin-bottom: 1.5rem;">Still have questions?</h3>
+      <a href="contact.html" class="btn">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 House of Keysha. All rights reserved. Discretion guaranteed. | 18+ Only</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+      question.parentElement.classList.toggle('open');
+    });
+  });
+
+  document.querySelectorAll('nav a').forEach(link => {
+    if (link.href === window.location.href) {
+      link.classList.add('active');
+    }
+  });
+</script>
+</body>
+</html>
