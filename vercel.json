@@ -1,7 +1,0 @@
-{
-  "framework": null,
-  "buildCommand": "cp static/*.html . && cp -r images .",
-  "outputDirectory": ".",
-  "cleanUrls": false,
-  "trailingSlash": false
-}
