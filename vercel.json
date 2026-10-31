@@ -1,6 +1,16 @@
 {
-  "buildCommand": "echo 'Using static deployment'",
-  "outputDirectory": "static",
+  "framework": null,
+  "buildCommand": "exit 0",
+  "outputDirectory": ".",
+  "public": "static",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    {"source": "/services", "destination": "/static/services.html"},
+    {"source": "/testimonials", "destination": "/static/testimonials.html"},
+    {"source": "/faq", "destination": "/static/faq.html"},
+    {"source": "/contact", "destination": "/static/contact.html"},
+    {"source": "/mistress-keysha", "destination": "/static/mistress-keysha.html"},
+    {"source": "/becky", "destination": "/static/becky.html"}
+  ]
 }
