@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — House of Keysha</title>
+  <meta name="description" content="Explore our premium BDSM, domination, and companion services. Professional discretion guaranteed." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --midnight: #0A0E27;
+      --deep-purple: #2D1B4E;
+      --rose-gold: #E8B4B8;
+      --champagne: #F7E7CE;
+      --crimson: #dc143c;
+      --accent: #B565D8;
+      --white: #FFFFFF;
+      --radius: 16px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--midnight);
+      color: var(--champagne);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1,h2,h3,h4 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+    header {
+      background: linear-gradient(135deg, rgba(10,14,39,0.95) 0%, rgba(45,27,78,0.8) 100%);
+      padding: 3rem 1rem 2rem;
+      text-align: center;
+      border-bottom: 2px solid var(--rose-gold);
+      backdrop-filter: blur(10px);
+    }
+    header h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: var(--rose-gold);
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      animation: glow-pulse 4s ease-in-out infinite;
+    }
+    @keyframes glow-pulse {
+      0%, 100% { text-shadow: 0 0 20px rgba(232,180,184,0.5), 0 0 40px rgba(181,101,216,0.3); }
+      50% { text-shadow: 0 0 30px rgba(232,180,184,0.8), 0 0 60px rgba(181,101,216,0.5); }
+    }
+
+    .nav-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 14, 39, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232, 180, 184, 0.1);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.8rem 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .nav-brand { color: var(--rose-gold); font-weight: bold; font-size: 1.2rem; }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    nav a {
+      color: var(--champagne);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1.1rem;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      border: 1px solid transparent;
+    }
+    nav a:hover, nav a.active {
+      background: rgba(232, 180, 184, 0.15);
+      color: var(--rose-gold);
+      border-color: var(--rose-gold);
+      box-shadow: 0 0 20px rgba(232, 180, 184, 0.2);
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--rose-gold);
+      color: var(--midnight);
+      font-weight: 600;
+      padding: 1rem 2.2rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .btn:hover {
+      background: var(--white);
+      box-shadow: 0 15px 40px rgba(232, 180, 184, 0.4);
+      transform: translateY(-2px);
+    }
+
+    section { padding: 5rem 0; }
+    section:nth-child(even) { background: linear-gradient(135deg, rgba(45,27,78,0.3) 0%, rgba(10,14,39,0.1) 100%); }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--rose-gold);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--rose-gold));
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .service-card {
+      background: linear-gradient(135deg, rgba(45,27,78,0.6) 0%, rgba(10,14,39,0.8) 100%);
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(232, 180, 184, 0.2);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent, rgba(232, 180, 184, 0.05));
+      pointer-events: none;
+    }
+    .service-card:hover {
+      border-color: var(--rose-gold);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(232, 180, 184, 0.2);
+    }
+    .service-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+    .service-card h3 {
+      font-size: 1.6rem;
+      color: var(--rose-gold);
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+    .service-card p {
+      color: var(--champagne);
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+      opacity: 0.95;
+    }
+    .service-price {
+      font-size: 1.3rem;
+      color: var(--accent);
+      font-weight: 600;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 1.5rem;
+    }
+    .service-card .btn {
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .pricing-table {
+      background: linear-gradient(135deg, rgba(45,27,78,0.4) 0%, rgba(10,14,39,0.6) 100%);
+      border: 1px solid rgba(232, 180, 184, 0.2);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+    .pricing-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid rgba(232, 180, 184, 0.1);
+      padding: 1.5rem;
+      align-items: center;
+    }
+    .pricing-row:last-child { border-bottom: none; }
+    .pricing-row:nth-child(odd) { background: rgba(232, 180, 184, 0.03); }
+    .pricing-header {
+      background: rgba(232, 180, 184, 0.08);
+      font-weight: 600;
+      color: var(--rose-gold);
+    }
+
+    footer {
+      background: rgba(10, 14, 39, 0.9);
+      border-top: 1px solid rgba(232, 180, 184, 0.1);
+      padding: 3rem 1rem;
+      text-align: center;
+      color: var(--champagne);
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 2rem 1rem 1.5rem; }
+      .nav-inner { flex-direction: column; gap: 1rem; }
+      .pricing-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Our Services</h1>
+</header>
+
+<div class="nav-wrapper">
+  <div class="nav-inner">
+    <span class="nav-brand">⚜️ HoK</span>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="mistress-keysha.html">Mistress Keysha</a>
+      <a href="becky.html">Becky</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<section id="services">
+  <div class="container">
+    <h2 class="section-title">Premium Experiences</h2>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-icon">👑</div>
+        <h3>Findom Sessions</h3>
+        <p>Submit to your goddess. Experience financial domination with humiliation, worship, and tribute offerings. Perfect for devotees seeking to serve.</p>
+        <div class="service-price">From AED 500</div>
+        <a href="contact.html" class="btn">Book Session</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">💎</div>
+        <h3>Girlfriend Experience</h3>
+        <p>Intimate companionship with genuine connection. Personalized sessions tailored to your desires. Perfect mix of fantasy and reality.</p>
+        <div class="service-price">From AED 600</div>
+        <a href="contact.html" class="btn">Book Session</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">⛓️</div>
+        <h3>BDSM Domination</h3>
+        <p>Professional bondage, discipline, and domination. Experienced in all kinks with complete safety protocols and SSC (Safe, Sane, Consensual) practices.</p>
+        <div class="service-price">From AED 750</div>
+        <a href="contact.html" class="btn">Book Session</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🎭</div>
+        <h3>Role Play Fantasy</h3>
+        <p>Custom scenarios tailored to your fantasies. From teacher-student to boss-employee. Your imagination, our expertise.</p>
+        <div class="service-price">From AED 700</div>
+        <a href="contact.html" class="btn">Book Session</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🌙</div>
+        <h3>Overnight Companion</h3>
+        <p>Extended companionship sessions. Experience an evening of luxury, intimate connection, and unforgettable moments.</p>
+        <div class="service-price">From AED 1,500</div>
+        <a href="contact.html" class="btn">Book Session</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <h3>Luxury Experience</h3>
+        <p>Premium package including dining, entertainment, and personalized companionship. Available for special events and occasions.</p>
+        <div class="service-price">Custom Quote</div>
+        <a href="contact.html" class="btn">Inquire</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="container">
+    <h2 class="section-title">Pricing & Packages</h2>
+    <div class="pricing-table">
+      <div class="pricing-row pricing-header">
+        <div>Service</div>
+        <div>Duration</div>
+        <div>Price (AED)</div>
+      </div>
+      <div class="pricing-row">
+        <div>30-Minute Session</div>
+        <div>30 mins</div>
+        <div>400</div>
+      </div>
+      <div class="pricing-row">
+        <div>1-Hour Session</div>
+        <div>1 hour</div>
+        <div>600</div>
+      </div>
+      <div class="pricing-row">
+        <div>2-Hour Session</div>
+        <div>2 hours</div>
+        <div>1,000</div>
+      </div>
+      <div class="pricing-row">
+        <div>4-Hour Session</div>
+        <div>4 hours</div>
+        <div>1,800</div>
+      </div>
+      <div class="pricing-row">
+        <div>Overnight (8 hours)</div>
+        <div>8 hours</div>
+        <div>3,500</div>
+      </div>
+      <div class="pricing-row">
+        <div>24-Hour Experience</div>
+        <div>24 hours</div>
+        <div>6,000</div>
+      </div>
+    </div>
+    <p style="text-align: center; margin-top: 2rem; opacity: 0.8;">
+      💳 Multiple payment methods accepted. Booking deposit required. Full discretion guaranteed.
+    </p>
+  </div>
+</section>
+
+<section id="why-book">
+  <div class="container">
+    <h2 class="section-title">Why Book With Us</h2>
+    <div style="max-width: 700px; margin: 0 auto; text-align: center; color: var(--champagne); line-height: 2;">
+      <p style="margin-bottom: 2rem;">
+        ✓ <strong>Years of Professional Experience</strong> — Trusted by Dubai's elite clientele<br>
+        ✓ <strong>Absolute Privacy & Discretion</strong> — Your secret is safe with us<br>
+        ✓ <strong>Safe & Consensual</strong> — SSC practices in every session<br>
+        ✓ <strong>Flexible Scheduling</strong> — Available 24/7 for your convenience<br>
+        ✓ <strong>Premium Settings</strong> — Discreet, luxurious locations<br>
+        ✓ <strong>Verified & Legitimate</strong> — Real profiles, real reviews
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 House of Keysha. All rights reserved. Discretion guaranteed. | 18+ Only</p>
+</footer>
+
+<script>
+  document.querySelectorAll('nav a').forEach(link => {
+    if (link.href === window.location.href) {
+      link.classList.add('active');
+    }
+  });
+</script>
+</body>
+</html>
