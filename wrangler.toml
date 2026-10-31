@@ -1,0 +1,15 @@
+name = "houseofkeyshaempiredxb"
+type = "javascript"
+account_id = "cfd66929f85a62192dd144d54bdc56c5"
+workers_dev = true
+
+[env.production]
+name = "houseofkeyshaempiredxb"
+routes = [
+  { pattern = "houseofkeyshaempiredxb.zarathebosslady18.workers.dev", zone_id = "" }
+]
+
+[build]
+command = "npm install"
+cwd = "./"
+main = "src/index.js"
