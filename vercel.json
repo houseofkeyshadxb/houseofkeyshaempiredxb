@@ -1,0 +1,38 @@
+{
+  "framework": "express",
+  "buildCommand": "npm install",
+  "devCommand": "node index.js",
+  "public": "static",
+  "redirects": [
+    {
+      "source": "/services",
+      "destination": "/services.html"
+    },
+    {
+      "source": "/testimonials",
+      "destination": "/testimonials.html"
+    },
+    {
+      "source": "/faq",
+      "destination": "/faq.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/mistress-keysha",
+      "destination": "/mistress-keysha.html"
+    },
+    {
+      "source": "/becky",
+      "destination": "/becky.html"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.js"
+    }
+  ]
+}
